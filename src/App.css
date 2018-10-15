@@ -1,9 +1,17 @@
+:root {
+	--global-padding: 16px;
+}
 .App {
 	display: flex;
 	align-items: center;
 	height: 100%;
+	padding: var(--global-padding)
 }
 .container {
+	flex-grow: 1;
 	margin: 0 auto;
 	max-width: 768px;
+}
+.root {
+	height: 100%;
 }

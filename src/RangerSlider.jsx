@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { compose } from 'redux'
 import RangeTrack from './RangeTrack'
+import RangeController from './RangeController'
 import './RangeSlider.css'
 
 const getAppropriateBreakpoint = ({ innerWidth, breakpoints }) =>
@@ -33,14 +34,20 @@ const getGroup = compose(
 
 export default class RangeSlider extends Component {
 	static propTypes = {
-		group: PropTypes.number,
-		breakpoint: PropTypes.number,
-		responsive: PropTypes.array
+		className: propTypes.string,
+		conrollerClassName: propTypes.string,
+		group: propTypes.number,
+		breakpoint: propTypes.number,
+		responsive: propTypes.array,
+		children: propTypes.oneOfType([
+			propTypes.arrayOf(propTypes.node),
+			propTypes.node
+		]).isRequired
 	}
 
 	static defaultProps = {
-		breakpoint: 0,
-		group: 1,
+		className: 'range-slider',
+		conrollerClassName: 'range-conroller',
 		responsive: [
 			{
 				breakpoint: 0,
@@ -68,7 +75,7 @@ export default class RangeSlider extends Component {
 			},
 			{
 				breakpoint: 1920,
-				group: 8
+				group: 7
 			}
 		]
 	}
@@ -76,9 +83,15 @@ export default class RangeSlider extends Component {
 	constructor(props) {
 		super(props)
 		this.onResize = this.onResize.bind(this)
+		this.onInput = this.onInput.bind(this)
 		this.getState = this.getState.bind(this)
+		this.onPrev = this.onPrev.bind(this)
+		this.onNext = this.onNext.bind(this)
 		this.setDimension = this.setDimension.bind(this)
 		this.updateDimension = this.updateDimension.bind(this)
+		this.inputRange = React.createRef()
+
+		console.log('this.inputRange: ', this.inputRange)
 
 		const state = this.getState()
 		this.setDimension(state)
@@ -93,9 +106,35 @@ export default class RangeSlider extends Component {
 		window.removeEventListener('resize', this.onResize)
 	}
 
+	onInput(e) {
+		console.log(e)
+		const { target } = e
+		const { value } = target
+
+		this.setState({ value })
+	}
+
 	onResize() {
 		const state = this.getState()
 		this.updateDimension(state)
+	}
+
+	onPrev() {
+		const { inputRange } = this
+		const currentValue = Number(inputRange.current.value)
+		const value = currentValue >= 1 ?
+			currentValue - 1 :
+			0
+		this.setState({ value })
+	}
+
+	onNext() {
+		const { inputRange } = this
+		const currentValue = Number(inputRange.current.value)
+		const value = currentValue <= 99 ?
+			currentValue + 1 :
+			100
+		this.setState({ value })
 	}
 
 	getState() {
@@ -122,15 +161,27 @@ export default class RangeSlider extends Component {
 	}
 
 	render() {
-		const { children } = this.props
-		const { breakpoint, group } = this.state
+		const { children, className, conrollerClassName } = this.props
+		const { breakpoint, group, value } = this.state
+		const { onInput, onPrev, onNext, inputRange } = this
 		return (
-			<div className="range-slider">
-				<div className="range-slider__keyhole">
-					<RangeTrack group={group} breakpoint={breakpoint}>
+			<div className={className}>
+				<div className={`${className}__keyhole`}>
+					<RangeTrack
+						className={className}
+						group={group}
+						breakpoint={breakpoint}
+						value={value}>
 						{children}
 					</RangeTrack>
 				</div>
+				<RangeController
+					inputRange={inputRange}
+					className={conrollerClassName}
+					onInput={onInput}
+					value={value}
+					onPrev={onPrev}
+					onNext={onNext}/>
 			</div>
 		)
 	}

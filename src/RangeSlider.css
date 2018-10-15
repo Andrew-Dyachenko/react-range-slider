@@ -1,3 +1,6 @@
+:root {
+    --global-margin: 16px
+}
 .range-slider,
 .range-slider * {
     transition: none;
@@ -9,6 +12,7 @@
 }
 .range-slider__track {
     display: flex;
+    align-items: center;
 }
 .range-slider__group {
     display: grid;
@@ -17,4 +21,44 @@
     grid-gap: 16px;
     width: 100%;
     padding: 0 8px;
+}
+.range-slider__item {
+    position: relative;
+    overflow: hidden;
+}
+.range-slider__item::before {
+    content: '';
+    display: block;
+    padding-top: 168.2%;
+}
+.range-slider__filler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.range-slider__img {
+    display: block;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+}
+.range-conroller {
+    display: block;
+    width: 100%;
+    margin: var(--global-margin) 0;
+}
+.range-conroller__input {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    margin-top: -20px;
+}
+.range-conroller__actions {
+    display: flex;
+    justify-content: center;
+}
+.range-conroller__action {
+    margin: 0 calc(var(--global-margin) / 4);
 }
