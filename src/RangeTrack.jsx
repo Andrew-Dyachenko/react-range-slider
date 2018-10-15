@@ -1,16 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const splitIntoSubArray = (arr, group) => {
-	let newArray = []
-	while (arr.length > 0) {
-		newArray.push(arr.splice(0, group)) 
+const splitIntoSubArray = (children, group) => {
+	const arrayLength = children.length;
+	let index = 0;
+	let tempArray = [];
+	
+	for (index = 0; index < arrayLength; index += group) {
+		tempArray.push(children.slice(index, index + group));
 	}
-	return newArray
+
+	return tempArray;
 }
 
 const RangeGroups = ({children, group}) => {
-	const groups = splitIntoSubArray(children, group)
+	let groups = splitIntoSubArray(children, group)
 	return (
 		<div className="range-slider__track" style={{width: `calc(100% * ${groups.length})`}}>
 			{

@@ -4,35 +4,43 @@ import { compose } from 'redux'
 import RangeTrack from './RangeTrack'
 import './RangeSlider.css'
 
-const getAppropriateBreakpoint = innerWidth => breakpoints =>
+const getAppropriateBreakpoint = ({ innerWidth, breakpoints }) =>
 	breakpoints.reduce((max, next) =>
-		max <= innerWidth ? next : max, 0)
+		max < innerWidth && next <= innerWidth ? next : max, 0)
 
-// const getAppropriateGroup = breakpoint =>
-	
+const getAppropriateGroup = ({ breakpoint, responsive }) =>
+	responsive.reduce((max, obj) =>
+		breakpoint === obj.breakpoint ? obj.group : max, 1)
 
-const getBreakpoints = responsive =>
-	responsive.reduce((points, obj) =>
+const getBreakpoints = ({ innerWidth, responsive }) => {
+	const breakpoints = responsive.reduce((points, obj) => 
 		[...points, obj.breakpoint], [])
 
+	return {
+		innerWidth,
+		breakpoints
+	}
+}
+
 const getBreakpoint = compose(
-	getAppropriateBreakpoint(window.innerWidth),
+	getAppropriateBreakpoint,
 	getBreakpoints
 )
 
-// const getGroup = compose(
-// 	getAppropriateGroup,
-// 	getBreakpoint
-// )
+const getGroup = compose(
+	getAppropriateGroup
+)
 
 export default class RangeSlider extends Component {
 	static propTypes = {
-		children: PropTypes.array,
 		group: PropTypes.number,
+		breakpoint: PropTypes.number,
 		responsive: PropTypes.array
 	}
 
 	static defaultProps = {
+		breakpoint: 0,
+		group: 1,
 		responsive: [
 			{
 				breakpoint: 0,
@@ -68,12 +76,16 @@ export default class RangeSlider extends Component {
 	constructor(props) {
 		super(props)
 		this.onResize = this.onResize.bind(this)
+		this.getState = this.getState.bind(this)
+		this.setDimension = this.setDimension.bind(this)
 		this.updateDimension = this.updateDimension.bind(this)
-		const { group } = this.props
-		this.state = { group }
+
+		const state = this.getState()
+		this.setDimension(state)
 	}
 
 	componentDidMount() {
+		console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.group: ', this.state.group)
 		window.addEventListener('resize', this.onResize)
 	}
 
@@ -82,24 +94,40 @@ export default class RangeSlider extends Component {
 	}
 
 	onResize() {
-		this.updateDimension()
+		const state = this.getState()
+		this.updateDimension(state)
 	}
 
-	updateDimension() {
+	getState() {
+		const { innerWidth } = window
 		const { responsive } = this.props
-		const breakpoint = getBreakpoint(responsive)
-		console.log('before dimension: ', this.state.breakpoint)
-		this.setState({ breakpoint })
-		console.log('after dimension: ', this.state.breakpoint)
+		const breakpoint = getBreakpoint({innerWidth, responsive})
+		const group = getGroup({breakpoint, responsive})
+
+		return {
+			breakpoint,
+			group
+		}
+	}
+
+	setDimension ({breakpoint, group}) {
+		// eslint-disable-next-line
+		this.state = { breakpoint, group }
+		console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.group: ', this.state.group)
+	}
+
+	updateDimension({breakpoint, group}) {
+		this.setState({ breakpoint, group })
+		console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.group: ', this.state.group)
 	}
 
 	render() {
 		const { children } = this.props
-		const { group } = this.state
+		const { breakpoint, group } = this.state
 		return (
 			<div className="range-slider">
 				<div className="range-slider__keyhole">
-					<RangeTrack group={group}>
+					<RangeTrack group={group} breakpoint={breakpoint}>
 						{children}
 					</RangeTrack>
 				</div>
