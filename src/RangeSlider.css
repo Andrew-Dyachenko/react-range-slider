@@ -1,0 +1,20 @@
+.range-slider,
+.range-slider * {
+    transition: none;
+    box-sizing: border-box;
+}
+.range-slider__keyhole {
+    overflow: hidden;
+    margin: 0 -8px;
+}
+.range-slider__track {
+    display: flex;
+}
+.range-slider__group {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-gap: 16px;
+    width: 100%;
+    padding: 0 8px;
+}
