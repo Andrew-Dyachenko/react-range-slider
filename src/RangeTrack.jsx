@@ -1,13 +1,13 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-const splitIntoSubArray = (children, group) => {
+const splitIntoSubArray = (children, slidesToShow) => {
 	const arrayLength = children.length;
 	let index = 0;
 	let tempArray = [];
 	
-	for (index = 0; index < arrayLength; index += group) {
-		tempArray.push(children.slice(index, index + group));
+	for (index = 0; index < arrayLength; index += slidesToShow) {
+		tempArray.push(children.slice(index, index + slidesToShow));
 	}
 
 	return tempArray;
@@ -16,11 +16,11 @@ const splitIntoSubArray = (children, group) => {
 const RangeGroups = ({
 	className,
 	children,
-	group = 1,
+	slidesToShow = 1,
 	value = 0
 })=> {
-	let groups = splitIntoSubArray(children, group)
-	const repeat = `repeat(${group}, 1fr)`
+	let slides = splitIntoSubArray(children, slidesToShow)
+	const repeat = `repeat(${slidesToShow}, 1fr)`
 	return (
 		<div
 			className={className}
@@ -28,16 +28,16 @@ const RangeGroups = ({
 			<div
 				className={`${className}__track`}
 				style={{
-					width: `calc(100% * ${groups.length})`,
+					width: `calc(100% * ${slides.length})`,
 					transform: `translateX(-${value}%)`
 				}}>
 				{
-					groups.map((group, index) =>
+					slides.map((slidesToShow, index) =>
 						<div className={`${className}__group`} key={index} style={{
 							gridTemplateColumns: repeat
 						}}>
 							{
-								group.map((item, index) =>
+								slidesToShow.map((item, index) =>
 									<div className={`${className}__item`} key={index}>
 										<div className={`${className}__filler`}>
 											{item}
@@ -57,7 +57,7 @@ RangeGroups.propTypes = {
         propTypes.arrayOf(propTypes.node),
         propTypes.node
     ]).isRequired,
-	group: propTypes.number,
+	slidesToShow: propTypes.number,
 	value: propTypes.oneOfType([
 		propTypes.string,
 		propTypes.number
