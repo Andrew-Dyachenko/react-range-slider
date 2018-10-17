@@ -5,19 +5,19 @@ import RangeTrack from './RangeTrack'
 import RangeController from './RangeController'
 import './RangeSlider.css'
 
-const getBreakpoints = ({ innerWidth, responsive }) => {
+const getBreakpoints = ({ windowInnerWidth, responsive }) => {
 	const breakpoints = responsive.reduce((points, obj) => 
 		[...points, obj.breakpoint], [])
 
 	return {
-		innerWidth,
+		windowInnerWidth,
 		breakpoints
 	}
 }
 
-const getAppropriateBreakpoint = ({ innerWidth, breakpoints }) =>
+const getAppropriateBreakpoint = ({ windowInnerWidth, breakpoints }) =>
 	breakpoints.reduce((max, next) =>
-		max < innerWidth && next <= innerWidth ?
+		max < windowInnerWidth && next <= windowInnerWidth ?
 			next :
 			max, 0)
 
@@ -64,6 +64,7 @@ export default class RangeSlider extends Component {
 		conrollerClassName: 'range-conroller',
 		slidesToScroll: 1,
 		slidesToShow: 1,
+		breakpoint: 0,
 		responsive: [
 			{
 				breakpoint: 0,
@@ -113,16 +114,16 @@ export default class RangeSlider extends Component {
 		this.setDimension = this.setDimension.bind(this)
 		this.updateDimension = this.updateDimension.bind(this)
 		this.inputRange = React.createRef()
-
-		// console.log('this.inputRange: ', this.inputRange)
+		this.slider = React.createRef()
 
 		const state = this.getDimensions()
 		this.setDimension(state)
 	}
 
 	componentDidMount() {
-		// console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.slidesToShow: ', this.state.slidesToShow)
 		window.addEventListener('resize', this.onResize)
+		const sliderWidth = this.getSliderWidth()
+		this.updateDimension({ sliderWidth })
 	}
 
 	componentWillUnmount() {
@@ -130,7 +131,6 @@ export default class RangeSlider extends Component {
 	}
 
 	onInput(e) {
-		// console.log(e)
 		const { target } = e
 		const { value } = target
 
@@ -139,39 +139,45 @@ export default class RangeSlider extends Component {
 
 	onResize() {
 		const state = this.getDimensions()
-		this.updateDimension(state)
+		const sliderWidth = this.getSliderWidth()
+		this.updateDimension({ ...state, sliderWidth })
 	}
 
 	onPrev() {
-		const { inputRange, slidesToScroll } = this
+		const { inputRange } = this
+		const { children } = this.props
+		const { slidesToScroll, } = this.state
 		const currentValue = Number(inputRange.current.value)
-		// console.log('currentValue: ', currentValue, 'slidesToScroll: ', slidesToScroll, 'currentValue <= 100 - slidesToScroll: ', currentValue <= 100 - slidesToScroll)
-		const value = currentValue >= slidesToScroll ?
-			currentValue - slidesToScroll :
+		const value = currentValue >= (100 / children.length) * slidesToScroll ?
+			currentValue - (100 / children.length) * slidesToScroll :
 			0
-		// console.log('new val is: ', value)
+
 		this.setState({ value })
 	}
 
 	onNext() {
-		const { inputRange, slidesToScroll } = this
+		const { inputRange } = this
+		const { children } = this.props
+		const { slidesToScroll, sliderWidth } = this.state
 		const currentValue = Number(inputRange.current.value)
-		// console.log('currentValue: ', currentValue, 'slidesToScroll: ', slidesToScroll, 'currentValue <= 100 - slidesToScroll: ', currentValue <= 100 - slidesToScroll)
-		const value = currentValue <= 100 - slidesToScroll ?
-			currentValue + slidesToScroll :
+		const value = currentValue <= 100 - (100 / children.length) * slidesToScroll ?
+			currentValue + (100 / children.length) * slidesToScroll :
 			100
-		// console.log('new val is: ', value)
+
 		this.setState({ value })
 	}
 
-	getDimensions() {
-		const { innerWidth } = window
-		const { responsive } = this.props
-		const breakpoint = getBreakpoint({innerWidth, responsive})
-		const slidesToShow = getSlidesToShow({breakpoint, responsive})
-		const slidesToScroll = getSlidesToScroll({breakpoint, responsive})
+	getSliderWidth() {
+		const sliderWidth = this.slider.current.offsetWidth
+		return sliderWidth
+	}
 
-		console.log('slidesToScroll: ', slidesToScroll)
+	getDimensions() {
+		const windowInnerWidth = window.innerWidth
+		const { responsive } = this.props
+		const breakpoint = getBreakpoint({windowInnerWidth, responsive}) || this.props.breakpoint
+		const slidesToShow = getSlidesToShow({breakpoint, responsive}) || this.props.slidesToShow
+		const slidesToScroll = getSlidesToScroll({breakpoint, responsive}) || this.props.slidesToScroll
 
 		return {
 			breakpoint,
@@ -183,12 +189,12 @@ export default class RangeSlider extends Component {
 	setDimension (dimensions) {
 		// eslint-disable-next-line
 		this.state = { ...dimensions  }
-		// console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.slidesToShow: ', this.state.slidesToShow)
+		console.log('this.state: ', this.state)
 	}
 
 	updateDimension(dimensions) {
 		this.setState({ ...dimensions })
-		// console.log('this.state.dimension: ', this.state.breakpoint, 'this.state.slidesToShow: ', this.state.slidesToShow)
+		console.log('this.state: ', this.state)
 	}
 
 	render() {
@@ -196,7 +202,7 @@ export default class RangeSlider extends Component {
 		const { breakpoint, slidesToShow, value } = this.state
 		const { onInput, onPrev, onNext, inputRange } = this
 		return (
-			<div className={className}>
+			<div className={className} ref={this.slider}>
 				<div className={`${className}__keyhole`}>
 					<RangeTrack
 						className={className}
