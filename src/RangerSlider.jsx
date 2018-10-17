@@ -51,6 +51,7 @@ export default class RangeSlider extends Component {
 		className: propTypes.string,
 		conrollerClassName: propTypes.string,
 		slidesToShow: propTypes.number,
+		slidesToScroll: propTypes.number,
 		breakpoint: propTypes.number,
 		responsive: propTypes.array,
 		children: propTypes.oneOfType([
