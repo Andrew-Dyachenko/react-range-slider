@@ -17,10 +17,12 @@ const RangeGroups = ({
 	className,
 	children,
 	slidesToShow = 1,
+	slidesPerRow = 1,
 	value = 0
 })=> {
 	let slides = splitIntoSubArray(children, slidesToShow)
-	const repeat = `repeat(${slidesToShow}, 1fr)`
+	const repeatX = `repeat(${slidesToShow / slidesPerRow}, 1fr)`
+	const repeatY = `repeat(${slidesPerRow}, 1fr)`
 	return (
 		<div
 			className={className}
@@ -34,7 +36,8 @@ const RangeGroups = ({
 				{
 					slides.map((slidesToShow, index) =>
 						<div className={`${className}__group`} key={index} style={{
-							gridTemplateColumns: repeat
+							gridTemplateColumns: repeatX,
+							gridTemplateRows: repeatY
 						}}>
 							{
 								slidesToShow.map((item, index) =>
@@ -58,6 +61,7 @@ RangeGroups.propTypes = {
         propTypes.node
     ]).isRequired,
 	slidesToShow: propTypes.number,
+	slidesPerRow: propTypes.number,
 	value: propTypes.oneOfType([
 		propTypes.string,
 		propTypes.number

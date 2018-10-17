@@ -52,8 +52,9 @@ export default class RangeSlider extends Component {
 		conrollerClassName: propTypes.string,
 		slidesToShow: propTypes.number,
 		slidesToScroll: propTypes.number,
+		slidesPerRow:  propTypes.number,
 		breakpoint: propTypes.number,
-		responsive: propTypes.array,
+		responsive: propTypes.arrayOf(propTypes.object),
 		children: propTypes.oneOfType([
 			propTypes.arrayOf(propTypes.node),
 			propTypes.node
@@ -66,41 +67,49 @@ export default class RangeSlider extends Component {
 		slidesToScroll: 1,
 		slidesToShow: 1,
 		breakpoint: 0,
+		slidesPerRow: 1,
 		responsive: [
 			{
 				breakpoint: 0,
 				slidesToShow: 1,
-				slidesToScroll: 1
+				slidesToScroll: 1,
+				slidesPerRow: 1
 			},
 			{
 				breakpoint: 480,
 				slidesToShow: 2,
-				slidesToScroll: 2
+				slidesToScroll: 2,
+				slidesPerRow: 1
 			},
 			{
 				breakpoint: 768,
 				slidesToShow: 3,
-				slidesToScroll: 3
+				slidesToScroll: 3,
+				slidesPerRow: 1
 			},
 			{
 				breakpoint: 1024,
 				slidesToShow: 4,
-				slidesToScroll: 4
+				slidesToScroll: 4,
+				slidesPerRow: 1
 			},
 			{
 				breakpoint: 1366,
 				slidesToShow: 5,
-				slidesToScroll: 5
+				slidesToScroll: 5,
+				slidesPerRow: 1
 			},
 			{
 				breakpoint: 1600,
 				slidesToShow: 6,
-				slidesToScroll: 6
+				slidesToScroll: 6,
+				slidesPerRow: 2
 			},
 			{
 				breakpoint: 1920,
-				slidesToShow: 7,
-				slidesToScroll: 7
+				slidesToShow: 8,
+				slidesToScroll: 8,
+				slidesPerRow: 2
 			}
 		]
 	}
@@ -159,7 +168,7 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll, sliderWidth } = this.state
+		const { slidesToScroll } = this.state
 		const currentValue = Number(inputRange.current.value)
 		const value = currentValue <= 100 - (100 / children.length) * slidesToScroll ?
 			currentValue + (100 / children.length) * slidesToScroll :
@@ -199,7 +208,7 @@ export default class RangeSlider extends Component {
 	}
 
 	render() {
-		const { children, className, conrollerClassName } = this.props
+		const { children, className, conrollerClassName, slidesPerRow } = this.props
 		const { breakpoint, slidesToShow, value } = this.state
 		const { onInput, onPrev, onNext, inputRange } = this
 		return (
@@ -208,6 +217,7 @@ export default class RangeSlider extends Component {
 					<RangeTrack
 						className={className}
 						slidesToShow={slidesToShow}
+						slidesPerRow={slidesPerRow}
 						breakpoint={breakpoint}
 						value={value}>
 						{children}
