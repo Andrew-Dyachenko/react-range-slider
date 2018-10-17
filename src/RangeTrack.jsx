@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import LazyLoad from 'react-lazyload'
 
 const splitIntoSubArray = (children, slidesToShow) => {
 	const arrayLength = children.length;
@@ -18,14 +19,16 @@ const RangeGroups = ({
 	children,
 	slidesToShow = 1,
 	slidesPerRow = 1,
-	value = 0
+	lazyLoad = false,
+	value = 0,
+	breakpoint = 0
 })=> {
 	let slides = splitIntoSubArray(children, slidesToShow)
 	const repeatX = `repeat(${slidesToShow / slidesPerRow}, 1fr)`
 	const repeatY = `repeat(${slidesPerRow}, 1fr)`
 	return (
 		<div
-			className={className}
+			className={`${className}__balancer`}
 			style={{transform: `translateX(${value}%)`}}>
 			<div
 				className={`${className}__track`}
@@ -42,9 +45,17 @@ const RangeGroups = ({
 							{
 								slidesToShow.map((item, index) =>
 									<div className={`${className}__item`} key={index}>
-										<div className={`${className}__filler`}>
-											{item}
-										</div>
+										{
+											lazyLoad ?
+												<LazyLoad height={200}>
+													<div className={`${className}__filler`}>
+														{item}
+													</div>
+												</LazyLoad> :
+												<div className={`${className}__filler`}>
+													{item}
+												</div>
+										}
 									</div>)
 							}
 						</div>)
@@ -62,6 +73,8 @@ RangeGroups.propTypes = {
     ]).isRequired,
 	slidesToShow: propTypes.number,
 	slidesPerRow: propTypes.number,
+	breakpoint: propTypes.number,
+	lazyLoad: propTypes.bool,
 	value: propTypes.oneOfType([
 		propTypes.string,
 		propTypes.number
