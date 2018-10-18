@@ -6,6 +6,9 @@
     transition: none;
     box-sizing: border-box;
 }
+.range-slider__crop {
+    overflow: hidden;
+}
 .range-slider__keyhole {
     overflow: hidden;
     margin: 0 -8px;

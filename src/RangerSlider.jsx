@@ -158,11 +158,15 @@ export default class RangeSlider extends Component {
 	onPrev() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll, } = this.state
-		const currentValue = Number(inputRange.current.value)
-		const value = currentValue >= (100 / children.length) * slidesToScroll ?
-			currentValue - (100 / children.length) * slidesToScroll :
+		const { slidesToScroll } = this.state // 5
+		const currentValue = Number(inputRange.current.value) // 0
+		const jump = (100 / 17) * slidesToScroll - 1
+		console.log('jump: ', jump, 'currentValue: ', currentValue)
+		const value = currentValue >= 100 - jump ?
+			currentValue - jump :
 			0
+
+		console.log(value)
 
 		this.setState({ value })
 	}
@@ -170,11 +174,15 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll } = this.state
-		const currentValue = Number(inputRange.current.value)
-		const value = currentValue <= 100 - (100 / children.length) * slidesToScroll ?
-			currentValue + (100 / children.length) * slidesToScroll :
+		const { slidesToScroll } = this.state // 5
+		const currentValue = Number(inputRange.current.value) // 0
+		const jump = (100 / 17) * slidesToScroll - 1
+		console.log('jump: ', jump, 'currentValue: ', currentValue)
+		const value = currentValue <= 100 - jump ?
+			currentValue + jump :
 			100
+
+		console.log(value)
 
 		this.setState({ value })
 	}
@@ -215,16 +223,18 @@ export default class RangeSlider extends Component {
 		const { onInput, onPrev, onNext, inputRange } = this
 		return (
 			<div className={className} ref={this.slider}>
-				<div className={`${className}__keyhole`}>
-					<RangeTrack
-						className={className}
-						slidesToShow={slidesToShow}
-						slidesPerRow={slidesPerRow}
-						breakpoint={breakpoint}
-						value={value}
-						lazyLoad={lazyLoad}>
-						{children}
-					</RangeTrack>
+				<div className={`${className}__crop`}>
+					<div className={`${className}__keyhole`}>
+						<RangeTrack
+							className={className}
+							slidesToShow={slidesToShow}
+							slidesPerRow={slidesPerRow}
+							breakpoint={breakpoint}
+							value={value}
+							lazyLoad={lazyLoad}>
+							{children}
+						</RangeTrack>
+					</div>
 				</div>
 				<RangeController
 					inputRange={inputRange}
