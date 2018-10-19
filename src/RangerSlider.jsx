@@ -158,15 +158,15 @@ export default class RangeSlider extends Component {
 	onPrev() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll } = this.state // 5
-		const currentValue = Number(inputRange.current.value) // 0
-		const jump = (100 / 17) * slidesToScroll - 1
-		console.log('jump: ', jump, 'currentValue: ', currentValue)
-		const value = currentValue >= 100 - jump ?
+		const currentValue = Number(inputRange.current.value)
+		const cols = 100 / children.length - 100 / children.length % 1
+		const jump = 100 / (cols - 1)
+
+		const value = currentValue - jump >= 0 ?
 			currentValue - jump :
 			0
 
-		console.log(value)
+		console.log('jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
@@ -174,15 +174,14 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll } = this.state // 5
-		const currentValue = Number(inputRange.current.value) // 0
-		const jump = (100 / 17) * slidesToScroll - 1
-		console.log('jump: ', jump, 'currentValue: ', currentValue)
-		const value = currentValue <= 100 - jump ?
+		const currentValue = Number(inputRange.current.value)
+		const cols = 100 / children.length - 100 / children.length % 1
+		const jump = 100 / (cols - 1)
+		const value = currentValue + jump <= 100 ?
 			currentValue + jump :
 			100
 
-		console.log(value)
+		console.log('jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
@@ -218,9 +217,22 @@ export default class RangeSlider extends Component {
 	}
 
 	render() {
-		const { children, className, conrollerClassName, slidesPerRow, lazyLoad } = this.props
-		const { breakpoint, slidesToShow, value } = this.state
-		const { onInput, onPrev, onNext, inputRange } = this
+		const {
+			children,
+			className,
+			conrollerClassName,
+			lazyLoad } = this.props,
+			{
+				breakpoint,
+				slidesToShow,
+				slidesToScroll,
+				slidesPerRow,
+				value } = this.state,
+			{
+				onInput,
+				onPrev,
+				onNext,
+				inputRange } = this
 		return (
 			<div className={className} ref={this.slider}>
 				<div className={`${className}__crop`}>
@@ -229,6 +241,7 @@ export default class RangeSlider extends Component {
 							className={className}
 							slidesToShow={slidesToShow}
 							slidesPerRow={slidesPerRow}
+							slidesToScroll={slidesToScroll}
 							breakpoint={breakpoint}
 							value={value}
 							lazyLoad={lazyLoad}>
