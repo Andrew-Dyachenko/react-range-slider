@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
-import RangerSlider from './RangerSlider'
+import RangerSlider from './RangeSlider'
 
 export default class App extends Component {
 	constructor(props) {

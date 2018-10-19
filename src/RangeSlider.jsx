@@ -33,6 +33,12 @@ const getAppropriateSlidesToScroll = ({ breakpoint, responsive }) =>
 			obj.slidesToScroll :
 			prev, 1)
 
+const getAppropriateSlidesPerRow = ({ breakpoint, responsive }) =>
+	responsive.reduce((prev, obj) =>
+		breakpoint === obj.breakpoint ?
+			obj.slidesPerRow :
+			prev, 1)
+
 const getBreakpoint = compose(
 	getAppropriateBreakpoint,
 	getBreakpoints
@@ -44,6 +50,10 @@ const getSlidesToShow = compose(
 
 const getSlidesToScroll = compose(
 	getAppropriateSlidesToScroll
+)
+
+const getSlidesPerRow = compose(
+	getAppropriateSlidesPerRow
 )
 
 export default class RangeSlider extends Component {
@@ -104,13 +114,13 @@ export default class RangeSlider extends Component {
 			{
 				breakpoint: 1600,
 				slidesToShow: 6,
-				slidesToScroll: 6,
+				slidesToScroll: 3,
 				slidesPerRow: 2
 			},
 			{
 				breakpoint: 1920,
 				slidesToShow: 8,
-				slidesToScroll: 8,
+				slidesToScroll: 4,
 				slidesPerRow: 2
 			}
 		]
@@ -158,9 +168,9 @@ export default class RangeSlider extends Component {
 	onPrev() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll } = this.state
+		const { slidesToScroll, slidesPerRow } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = Math.round(children.length / slidesToScroll)
+		const cols = Math.round(children.length / slidesPerRow / slidesToScroll)
 		const jump = 100 / (cols - 1)
 		const value = currentValue - jump >= 0 ?
 			currentValue - jump :
@@ -174,35 +184,46 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll } = this.state
+		const { slidesToScroll, slidesPerRow } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = Math.round(children.length / slidesToScroll)
+		const cols = Math.round(Math.round(children.length / slidesPerRow) / slidesToScroll)
 		const jump = 100 / (cols - 1)
 		const value = currentValue + jump <= 100 ?
 			currentValue + jump :
 			100
 
-		console.log('jump: ', jump, 'value: ', value)
+		console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
 
 	getSliderWidth() {
 		const sliderWidth = this.slider.current.offsetWidth
+		console.log('sliderWidth: ', sliderWidth)
 		return sliderWidth
 	}
 
 	getDimensions() {
+		let {
+			breakpoint,
+			slidesToShow,
+			slidesToScroll,
+			slidesPerRow
+		} = this.props
+
 		const windowInnerWidth = window.innerWidth
 		const { responsive } = this.props
-		const breakpoint = getBreakpoint({windowInnerWidth, responsive}) || this.props.breakpoint
-		const slidesToShow = getSlidesToShow({breakpoint, responsive}) || this.props.slidesToShow
-		const slidesToScroll = getSlidesToScroll({breakpoint, responsive}) || this.props.slidesToScroll
+
+		breakpoint = getBreakpoint({windowInnerWidth, responsive})   || breakpoint
+		slidesToShow = getSlidesToShow({breakpoint, responsive})     || slidesToShow
+		slidesToScroll = getSlidesToScroll({breakpoint, responsive}) || slidesToScroll
+		slidesPerRow = getSlidesPerRow({breakpoint, responsive})     || slidesPerRow
 
 		return {
 			breakpoint,
 			slidesToShow,
-			slidesToScroll
+			slidesToScroll,
+			slidesPerRow
 		}
 	}
 
