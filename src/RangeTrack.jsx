@@ -19,17 +19,22 @@ const RangeGroups = ({
 	children,
 	slidesToShow = 1,
 	slidesPerRow = 1,
+	slidesToScroll = 1,
 	lazyLoad = false,
 	value = 0,
-	breakpoint = 0
 })=> {
 	let slides = splitIntoSubArray(children, slidesToShow)
-	const repeatX = `repeat(${slidesToShow / slidesPerRow}, 1fr)`
+	const repeatX = `repeat(${Math.round(slidesToShow / slidesPerRow)}, 1fr)`
 	const repeatY = `repeat(${slidesPerRow}, 1fr)`
+	// 100 / children.length - 100 / children.length % 1
+	// const cols = 100 / children.length - 100 / children.length % 1
+
 	return (
 		<div
 			className={`${className}__balancer`}
-			style={{transform: `translateX(${value}%)`}}>
+			style={{
+				transform: `translateX(${value}%)`
+			}}>
 			<div
 				className={`${className}__track`}
 				style={{
@@ -72,6 +77,7 @@ RangeGroups.propTypes = {
         propTypes.node
     ]).isRequired,
 	slidesToShow: propTypes.number,
+	slidesToScroll: propTypes.number,
 	slidesPerRow: propTypes.number,
 	breakpoint: propTypes.number,
 	lazyLoad: propTypes.bool,

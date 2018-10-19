@@ -158,10 +158,10 @@ export default class RangeSlider extends Component {
 	onPrev() {
 		const { inputRange } = this
 		const { children } = this.props
+		const { slidesToScroll } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = 100 / children.length - 100 / children.length % 1
+		const cols = Math.round(children.length / slidesToScroll)
 		const jump = 100 / (cols - 1)
-
 		const value = currentValue - jump >= 0 ?
 			currentValue - jump :
 			0
@@ -174,8 +174,9 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
+		const { slidesToScroll } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = 100 / children.length - 100 / children.length % 1
+		const cols = Math.round(children.length / slidesToScroll)
 		const jump = 100 / (cols - 1)
 		const value = currentValue + jump <= 100 ?
 			currentValue + jump :
