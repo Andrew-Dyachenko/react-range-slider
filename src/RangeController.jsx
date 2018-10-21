@@ -18,7 +18,7 @@ const RangeConroller = ({
 }) =>
 	<fieldset className={className}>
 		<legend>Range Slider Controller</legend>
-		<label htmlFor={`${className}__input`}>Change to slide</label>
+		<label htmlFor={`${className}__input`}>Controllers</label>
 		<input
 			className={`${className}__input`}
 			id={`${inputId}__input`}

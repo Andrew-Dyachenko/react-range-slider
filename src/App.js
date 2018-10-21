@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
 import RangerSlider from './RangeSlider'
+import { version } from '../package.json'
 
 export default class App extends Component {
 	constructor(props) {
@@ -57,11 +58,13 @@ export default class App extends Component {
 		const { loading, images } = this.state
 		return (
 			<div className='App'>
-				<div className='container'>
+				<div className='container App__container'>
 					<Helmet>
 						<title>React Range Slider</title>
 					</Helmet>
-
+					<h1>
+						React Range Slider { version }
+					</h1>
 					{
 						loading ?
 							<div className="loader App__loader">

@@ -1,5 +1,6 @@
 :root {
-	--global-margin: 16px
+	--global-margin: 16px;
+	--global-padding: 16px;
 }
 .range-slider,
 .range-slider * {
@@ -53,9 +54,11 @@
 	position: relative;
 }
 .range-conroller {
-	display: block;
+	display: grid;
+	grid-row-gap: var(--global-padding);
 	text-align: left;
 	width: 100%;
+	margin: 0;
 	margin: var(--global-margin) 0;
 }
 .range-conroller__input {
