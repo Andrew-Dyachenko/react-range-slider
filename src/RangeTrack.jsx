@@ -3,15 +3,15 @@ import propTypes from 'prop-types'
 // import LazyLoad from 'react-lazyload'
 
 const splitIntoSubArray = (children, slidesToShow) => {
-	const arrayLength = children.length;
-	let index = 0;
-	let tempArray = [];
+	const arrayLength = children.length
+	let index = 0
+	let tempArray = []
 	
 	for (index = 0; index < arrayLength; index += slidesToShow) {
-		tempArray.push(children.slice(index, index + slidesToShow));
+		tempArray.push(children.slice(index, index + slidesToShow))
 	}
 
-	return tempArray;
+	return tempArray
 }
 
 const RangeGroups = ({
@@ -19,8 +19,8 @@ const RangeGroups = ({
 	children,
 	slidesToShow = 1,
 	slidesPerRow = 1,
-	slidesToScroll = 1,
-	lazyLoad = false,
+	// slidesToScroll = 1,
+	// lazyLoad = false,
 	value = 0
 })=> {
 	let slides = splitIntoSubArray(children, slidesToShow)
@@ -65,9 +65,9 @@ const RangeGroups = ({
 RangeGroups.propTypes = {
 	className: propTypes.string,
 	children: propTypes.oneOfType([
-        propTypes.arrayOf(propTypes.node),
-        propTypes.node
-    ]).isRequired,
+		propTypes.arrayOf(propTypes.node),
+		propTypes.node
+	]).isRequired,
 	slidesToShow: propTypes.number,
 	slidesToScroll: propTypes.number,
 	slidesPerRow: propTypes.number,

@@ -1,73 +1,73 @@
 :root {
-    --global-margin: 16px
+	--global-margin: 16px
 }
 .range-slider,
 .range-slider * {
-    transition: none;
-    box-sizing: border-box;
+	transition: none;
+	box-sizing: border-box;
 }
 .range-slider__crop {
-    overflow: hidden;
+	overflow: hidden;
 }
 .range-slider__keyhole {
-    overflow: hidden;
-    margin: 0 -8px;
+	overflow: hidden;
+	margin: 0 -8px;
 }
 .range-slider__track {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 .range-slider__group {
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    grid-gap: 16px;
-    width: 100%;
-    padding: 0 8px;
+	display: grid;
+	align-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+	grid-gap: 16px;
+	width: 100%;
+	padding: 0 8px;
 }
 .range-slider__item {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 .range-slider__item::before {
-    content: '';
-    display: block;
-    padding-top: 168.2%;
+	content: '';
+	display: block;
+	padding-top: 100%;
 }
 .range-slider__filler {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 .range-slider__img {
-    display: block;
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+	display: block;
+	object-fit: cover;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 .range-slider__balancer {
-    position: relative;
+	position: relative;
 }
 .range-conroller {
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: var(--global-margin) 0;
+	display: block;
+	text-align: left;
+	width: 100%;
+	margin: var(--global-margin) 0;
 }
 .range-conroller__input {
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    margin-top: -20px;
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+	margin-top: -20px;
 }
 .range-conroller__actions {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .range-conroller__action {
-    margin: 0 calc(var(--global-margin) / 4);
+	margin: 0 calc(var(--global-margin) / 4);
 }

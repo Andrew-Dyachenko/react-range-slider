@@ -114,13 +114,13 @@ export default class RangeSlider extends Component {
 			{
 				breakpoint: 1600,
 				slidesToShow: 6,
-				slidesToScroll: 3,
+				slidesToScroll: 6,
 				slidesPerRow: 2
 			},
 			{
 				breakpoint: 1920,
 				slidesToShow: 8,
-				slidesToScroll: 4,
+				slidesToScroll: 8,
 				slidesPerRow: 2
 			}
 		]
@@ -170,13 +170,16 @@ export default class RangeSlider extends Component {
 		const { children } = this.props
 		const { slidesToScroll, slidesPerRow } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = Math.round(children.length / slidesPerRow / slidesToScroll)
+		const cols = Math.ceil(
+			Math.ceil(children.length / slidesPerRow) /
+			Math.ceil(slidesToScroll / slidesPerRow)
+		)
 		const jump = 100 / (cols - 1)
 		const value = currentValue - jump >= 0 ?
 			currentValue - jump :
 			0
 
-		console.log('jump: ', jump, 'value: ', value)
+		// console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
@@ -186,20 +189,24 @@ export default class RangeSlider extends Component {
 		const { children } = this.props
 		const { slidesToScroll, slidesPerRow } = this.state
 		const currentValue = Number(inputRange.current.value)
-		const cols = Math.round(Math.round(children.length / slidesPerRow) / slidesToScroll)
+		const cols = Math.ceil(
+			Math.ceil(children.length / slidesPerRow) /
+			Math.ceil(slidesToScroll / slidesPerRow)
+		)
+		// console.log('children.length: ',children.length, 'slidesPerRow: ', slidesPerRow, 'slidesToScroll: ', slidesToScroll)
 		const jump = 100 / (cols - 1)
 		const value = currentValue + jump <= 100 ?
 			currentValue + jump :
 			100
 
-		console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
+		// console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
 
 	getSliderWidth() {
 		const sliderWidth = this.slider.current.offsetWidth
-		console.log('sliderWidth: ', sliderWidth)
+		// console.log('sliderWidth: ', sliderWidth)
 		return sliderWidth
 	}
 
@@ -230,20 +237,20 @@ export default class RangeSlider extends Component {
 	setDimension (dimensions) {
 		// eslint-disable-next-line
 		this.state = { ...dimensions  }
-		console.log('this.state: ', this.state)
+		// console.log('this.state: ', this.state)
 	}
 
 	updateDimension(dimensions) {
 		this.setState({ ...dimensions })
-		console.log('this.state: ', this.state)
+		// console.log('this.state: ', this.state)
 	}
 
 	render() {
 		const {
-			children,
-			className,
-			conrollerClassName,
-			lazyLoad } = this.props,
+				children,
+				className,
+				conrollerClassName,
+				lazyLoad } = this.props,
 			{
 				breakpoint,
 				slidesToShow,
