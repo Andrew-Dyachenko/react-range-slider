@@ -15,11 +15,11 @@ const RangeLazyImage = props => {
 				className={className}
 				ref={ref}
 				src={fakeImage}
-				alt={imageProps.alt}
+				alt={alt}
 			/>
 		)}
 		actual={({ imageProps }) => (
-			<img {...imageProps} />
+			<img alt={alt} {...imageProps} />
 		)}
 	/>
 }
