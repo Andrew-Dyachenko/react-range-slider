@@ -10,7 +10,7 @@ const RangeLazyImage = props => {
 		src={src}
 		alt={alt}
 		debounceDurationMs={100}
-		placeholder={({ imageProps, ref }) => (
+		placeholder={({ ref }) => (
 			<img
 				className={className}
 				ref={ref}
