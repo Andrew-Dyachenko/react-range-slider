@@ -4,23 +4,22 @@ import fakeImage from './fakeImage.png'
 import { LazyImage } from 'react-lazy-images'
 
 const RangeLazyImage = props => {
-	const { className, src } = props
+	const { className, src, alt } = props
 	return <LazyImage
 		className={className}
-		src="https://www.fillmurray.com/g/2700/1800"
-		alt="A portrait of Bill Murray."
-		debounceDurationMs={150}
+		src={src}
+		alt={alt}
+		debounceDurationMs={100}
 		placeholder={({ imageProps, ref }) => (
 			<img
 				className={className}
 				ref={ref}
-				src="https://www.fillmurray.com/g/60/40"
+				src={fakeImage}
 				alt={imageProps.alt}
-				style={{ width: "100%" }}
 			/>
 		)}
 		actual={({ imageProps }) => (
-			<img {...imageProps} style={{ width: "100%" }} />
+			<img {...imageProps} />
 		)}
 	/>
 }
