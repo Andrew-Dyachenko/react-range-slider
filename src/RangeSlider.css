@@ -2,6 +2,10 @@
 	--global-margin: 16px;
 	--global-padding: 16px;
 }
+.range-slider {
+	display: grid;
+	grid-row-gap: var(--global-padding);
+}
 .range-slider,
 .range-slider * {
 	transition: none;
@@ -59,7 +63,6 @@
 	text-align: left;
 	width: 100%;
 	margin: 0;
-	margin: var(--global-margin) 0;
 }
 .range-conroller__input {
 	display: block;

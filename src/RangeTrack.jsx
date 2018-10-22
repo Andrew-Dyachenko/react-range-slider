@@ -1,6 +1,5 @@
 import React from 'react'
 import propTypes from 'prop-types'
-// import LazyLoad from 'react-lazyload'
 
 const splitIntoSubArray = (children, slidesToShow) => {
 	const arrayLength = children.length
@@ -20,15 +19,13 @@ const RangeGroups = ({
 	slidesToShow = 1,
 	slidesPerRow = 1,
 	// slidesToScroll = 1,
-	// lazyLoad = false,
+	lazyLoad = false,
 	value = 0
 })=> {
-	let slides = splitIntoSubArray(children, slidesToShow)
+	const slides = splitIntoSubArray(children, slidesToShow)
 	const repeatX = `repeat(${Math.round(slidesToShow / slidesPerRow)}, 1fr)`
 	const repeatY = `repeat(${slidesPerRow}, 1fr)`
-	// 100 / children.length - 100 / children.length % 1
-	// const cols = 100 / children.length - 100 / children.length % 1
-
+	
 	return (
 		<div
 			className={`${className}__balancer`}
@@ -51,7 +48,11 @@ const RangeGroups = ({
 								slidesToShow.map((item, index) =>
 									<div className={`${className}__item`} key={index}>
 										<div className={`${className}__filler`}>
-											{item}
+											{
+												lazyLoad ?
+													item :
+													item
+											}
 										</div>
 									</div>)
 							}

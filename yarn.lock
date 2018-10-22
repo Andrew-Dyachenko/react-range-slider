@@ -8667,6 +8667,21 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
+react-intersection-observer@^6.1.0:
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-6.2.3.tgz#42c150d71ef835e5a89a480eed1f07cc416f3700"
+  integrity sha512-AYc0yN4sg6UAPImFZtZYWb8crf6G5Fe9AJ3jIFDB+USNlKDvJ49JoCcfB2ovPmcR5eRRKEbKDaxQMXGTI97aMg==
+  dependencies:
+    invariant "^2.2.4"
+
+react-lazy-images@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-lazy-images/-/react-lazy-images-1.1.0.tgz#c865445c96e568a6249db03a2bb2dccd49cb6f50"
+  integrity sha512-h5DHFhkMJyh2qsDl3hXWu6d+On10FsgHtRJ+BH7xjgsFOvsqaii9CEwEESqPJrrAiHo1qrN1LgzrV8X3zctHKA==
+  dependencies:
+    react-intersection-observer "^6.1.0"
+    unionize "^2.1.2"
+
 react-lazyload@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.3.0.tgz#ccb134223012447074a96543954f44b055dc6185"
@@ -10368,6 +10383,11 @@ union-value@^1.0.0:
     get-value "^2.0.6"
     is-extendable "^0.1.1"
     set-value "^0.4.3"
+
+unionize@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/unionize/-/unionize-2.1.2.tgz#2513b148de515bec93f045d1685bd88eab62b608"
+  integrity sha1-JROxSN5RW+yT8EXRaFvYjqtitgg=
 
 uniq@^1.0.1:
   version "1.0.1"

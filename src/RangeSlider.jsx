@@ -4,6 +4,7 @@ import { compose } from 'redux'
 import RangeTrack from './RangeTrack'
 import RangeController from './RangeController'
 import './RangeSlider.css'
+export {default as RangeLazyImage} from './RangeLazyImage'
 
 const getBreakpoints = ({ windowInnerWidth, responsive }) => {
 	const breakpoints = responsive.reduce((points, obj) => 

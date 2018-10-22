@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
-import RangerSlider from './RangeSlider'
+import RangerSlider, {RangeLazyImage} from './RangeSlider'
 import { version } from '../package.json'
 
 export default class App extends Component {
@@ -63,7 +63,7 @@ export default class App extends Component {
 						<title>React Range Slider</title>
 					</Helmet>
 					<h1>
-						React Range Slider { version }
+						React Range Slider
 					</h1>
 					{
 						loading ?
@@ -75,7 +75,7 @@ export default class App extends Component {
 							<RangerSlider>
 								{
 									images.map((obj, index) =>
-										<img
+										<RangeLazyImage
 											className='range-slider__img'
 											src={obj.largeImageURL}
 											alt={obj.tags || 'cap'}
@@ -84,6 +84,11 @@ export default class App extends Component {
 								}
 							</RangerSlider>
 					}
+					<h6>
+						<samp>
+							{ version }
+						</samp>
+					</h6>
 				</div>
 			</div>
 		)
