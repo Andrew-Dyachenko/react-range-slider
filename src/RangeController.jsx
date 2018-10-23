@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import RangeDatalist from './RangeDatalist'
 
 const RangeConroller = ({
 	className = 'range-conroller',
@@ -10,6 +11,8 @@ const RangeConroller = ({
 	max = 100,
 	value = 0,
 	step = 'any',
+	data = [],
+	dataList = false,
 	onInput = f => f,
 	onChange = f => f,
 	onPrev = f => f,
@@ -31,6 +34,11 @@ const RangeConroller = ({
 			onInput={onInput}
 			onChange={onChange}
 			ref={inputRange}/>
+		{
+			dataList ?
+				<RangeDatalist data={data} value={value}/> :
+				null
+		}
 		<div className={`${className}__actions`}>
 			<button
 				className={`${className}__action ${className}__action--prev`}
@@ -60,6 +68,8 @@ RangeConroller.propTypes = {
 		propTypes.string,
 		propTypes.number,
 	]),
+	data: propTypes.array,
+	dataList: propTypes.bool,
 	onInput: propTypes.func,
 	onChange: propTypes.func,
 	onPrev: propTypes.func,

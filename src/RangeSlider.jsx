@@ -65,12 +65,12 @@ export default class RangeSlider extends Component {
 		slidesToScroll: propTypes.number,
 		slidesPerRow:  propTypes.number,
 		breakpoint: propTypes.number,
-		lazyLoad: propTypes.bool,
 		responsive: propTypes.arrayOf(propTypes.object),
 		children: propTypes.oneOfType([
 			propTypes.arrayOf(propTypes.node),
 			propTypes.node
-		]).isRequired
+		]).isRequired,
+		dataList: propTypes.bool
 	}
 
 	static defaultProps = {
@@ -80,7 +80,7 @@ export default class RangeSlider extends Component {
 		slidesToShow: 1,
 		breakpoint: 0,
 		slidesPerRow: 1,
-		lazyLoad: true,
+		dataList: false,
 		responsive: [
 			{
 				breakpoint: 0,
@@ -251,7 +251,7 @@ export default class RangeSlider extends Component {
 				children,
 				className,
 				conrollerClassName,
-				lazyLoad } = this.props,
+				dataList } = this.props,
 			{
 				breakpoint,
 				slidesToShow,
@@ -273,8 +273,7 @@ export default class RangeSlider extends Component {
 							slidesPerRow={slidesPerRow}
 							slidesToScroll={slidesToScroll}
 							breakpoint={breakpoint}
-							value={value}
-							lazyLoad={lazyLoad}>
+							value={value}>
 							{children}
 						</RangeTrack>
 					</div>
@@ -285,7 +284,9 @@ export default class RangeSlider extends Component {
 					onInput={onInput}
 					value={value}
 					onPrev={onPrev}
-					onNext={onNext}/>
+					onNext={onNext}
+					dataList={dataList}
+					data={children}/>
 			</div>
 		)
 	}

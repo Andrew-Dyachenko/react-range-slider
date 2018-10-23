@@ -8,6 +8,7 @@ export default class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			lazyLoad: true,
 			loading: false,
 			images: []
 		}
@@ -55,7 +56,7 @@ export default class App extends Component {
 			.catch(error => console.error(`Error data loading: ${error}`))
 	}
 	render() {
-		const { loading, images } = this.state
+		const { loading, images, lazyLoad } = this.state
 		return (
 			<div className='App'>
 				<div className='container App__container'>
@@ -72,18 +73,32 @@ export default class App extends Component {
 									Loading
 								</div>
 							</div> :
-							<RangerSlider>
+							<RangerSlider
+								dataList={true}>
 								{
 									images.map((obj, index) =>
-										<RangeLazyImage
-											className='range-slider__img'
-											src={obj.largeImageURL}
-											alt={obj.tags || 'cap'}
-											key={index}/>
+										lazyLoad ?
+											<RangeLazyImage
+												className='range-slider__img'
+												src={obj.largeImageURL}
+												alt={obj.tags || 'cap'}
+												key={index}/> :
+
+											<img
+												className='range-slider__img'
+												src={obj.largeImageURL}
+												alt={obj.tags || 'cap'}
+												key={index}/>
 									)
 								}
 							</RangerSlider>
 					}
+					<details>
+						<summary>Source</summary>
+						<code>
+							Source...
+						</code>
+					</details>
 					<h6>
 						<samp>
 							{ version }

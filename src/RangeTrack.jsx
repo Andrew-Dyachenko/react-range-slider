@@ -14,12 +14,10 @@ const splitIntoSubArray = (children, slidesToShow) => {
 }
 
 const RangeGroups = ({
-	className,
-	children,
+	className = 'range-conroller',
+	children = [],
 	slidesToShow = 1,
 	slidesPerRow = 1,
-	// slidesToScroll = 1,
-	lazyLoad = false,
 	value = 0
 })=> {
 	const slides = splitIntoSubArray(children, slidesToShow)
@@ -48,11 +46,7 @@ const RangeGroups = ({
 								slidesToShow.map((item, index) =>
 									<div className={`${className}__item`} key={index}>
 										<div className={`${className}__filler`}>
-											{
-												lazyLoad ?
-													item :
-													item
-											}
+											{item}
 										</div>
 									</div>)
 							}
@@ -73,7 +67,6 @@ RangeGroups.propTypes = {
 	slidesToScroll: propTypes.number,
 	slidesPerRow: propTypes.number,
 	breakpoint: propTypes.number,
-	lazyLoad: propTypes.bool,
 	value: propTypes.oneOfType([
 		propTypes.string,
 		propTypes.number
