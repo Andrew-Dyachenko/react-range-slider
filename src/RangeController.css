@@ -1,0 +1,23 @@
+.range-conroller {
+	display: grid;
+	grid-row-gap: var(--global-padding);
+	grid-gap: calc(var(--global-padding) / 2);
+	text-align: left;
+	width: 100%;
+	margin: 0;
+	padding: calc(var(--global-padding) / 2);
+	border: 1px solid #333;
+}
+.range-conroller__input {
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+	margin-top: -20px;
+}
+.range-conroller__actions {
+	display: flex;
+	justify-content: center;
+}
+.range-conroller__action {
+	margin: 0 calc(var(--global-margin) / 4);
+}

@@ -132,6 +132,7 @@ export default class RangeSlider extends Component {
 		this.onResize = this.onResize.bind(this)
 		this.onInput = this.onInput.bind(this)
 		this.getDimensions = this.getDimensions.bind(this)
+		this.onDatalist = this.onDatalist.bind(this)
 		this.onPrev = this.onPrev.bind(this)
 		this.onNext = this.onNext.bind(this)
 		this.setDimension = this.setDimension.bind(this)
@@ -164,6 +165,13 @@ export default class RangeSlider extends Component {
 		const state = this.getDimensions()
 		const sliderWidth = this.getSliderWidth()
 		this.updateDimension({ ...state, sliderWidth })
+	}
+
+	onDatalist(e) {
+		const { target } = e
+		const value = Number(target.value)
+		
+		this.setState({ value })
 	}
 
 	onPrev() {
@@ -262,6 +270,7 @@ export default class RangeSlider extends Component {
 				onInput,
 				onPrev,
 				onNext,
+				onDatalist,
 				inputRange } = this
 		return (
 			<div className={className} ref={this.slider}>
@@ -282,6 +291,7 @@ export default class RangeSlider extends Component {
 					inputRange={inputRange}
 					className={conrollerClassName}
 					onInput={onInput}
+					onDatalist={onDatalist}
 					value={value}
 					onPrev={onPrev}
 					onNext={onNext}

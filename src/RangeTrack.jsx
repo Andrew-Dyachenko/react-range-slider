@@ -14,7 +14,7 @@ const splitIntoSubArray = (children, slidesToShow) => {
 }
 
 const RangeGroups = ({
-	className = 'range-conroller',
+	className = 'range-slider',
 	children = [],
 	slidesToShow = 1,
 	slidesPerRow = 1,

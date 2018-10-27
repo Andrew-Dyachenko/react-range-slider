@@ -1,6 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import RangeDatalist from './RangeDatalist'
+import './RangeController.css'
 
 const RangeConroller = ({
 	className = 'range-conroller',
@@ -17,11 +18,12 @@ const RangeConroller = ({
 	onChange = f => f,
 	onPrev = f => f,
 	onNext = f => f,
+	onDatalist = f => f,
 	inputRange = f => f
 }) =>
 	<fieldset className={className}>
-		<legend>Range Slider Controller</legend>
-		<label htmlFor={`${className}__input`}>Controllers</label>
+		<legend>Range Controlls</legend>
+		<label htmlFor={`${className}__input`}>Choose owlsley</label>
 		<input
 			className={`${className}__input`}
 			id={`${inputId}__input`}
@@ -33,10 +35,14 @@ const RangeConroller = ({
 			step={step}
 			onInput={onInput}
 			onChange={onChange}
-			ref={inputRange}/>
+			ref={inputRange}
+			list='range-datalist'/>
 		{
 			dataList ?
-				<RangeDatalist data={data} value={value}/> :
+				<RangeDatalist
+					data={data}
+					value={value}
+					onDatalist={onDatalist}/> :
 				null
 		}
 		<div className={`${className}__actions`}>
@@ -72,6 +78,7 @@ RangeConroller.propTypes = {
 	dataList: propTypes.bool,
 	onInput: propTypes.func,
 	onChange: propTypes.func,
+	onDatalist: propTypes.func,
 	onPrev: propTypes.func,
 	onNext: propTypes.func,
 	inputRange: propTypes.object
