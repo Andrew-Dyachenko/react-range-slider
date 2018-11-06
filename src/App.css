@@ -1,5 +1,8 @@
 :root {
 	--global-padding: 16px;
+	--global-margin: 16px;
+
+	font-size: 16px;
 }
 @keyframes dots {
 
@@ -34,7 +37,7 @@
 .App {
 	display: flex;
 	align-items: center;
-	height: 100%;
+	min-height: 100%;
 	padding: var(--global-padding)
 }
 .container {

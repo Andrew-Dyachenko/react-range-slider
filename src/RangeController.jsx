@@ -9,10 +9,10 @@ const RangeConroller = ({
 	inputId = 'range-controller',
 	name = 'range-controller',
 	min = 0,
-	max = 100,
 	value = 0,
 	step = 'any',
 	data = [],
+	slidesToShow = 1,
 	dataList = false,
 	onInput = f => f,
 	onChange = f => f,
@@ -20,44 +20,52 @@ const RangeConroller = ({
 	onNext = f => f,
 	onDatalist = f => f,
 	inputRange = f => f
-}) =>
-	<fieldset className={className}>
-		<legend>Range Controlls</legend>
-		<label htmlFor={`${className}__input`}>Choose owlsley</label>
-		<input
-			className={`${className}__input`}
-			id={`${inputId}__input`}
-			name={`${name}__input`}
-			type={type}
-			min={min}
-			max={max}
-			value={value}
-			step={step}
-			onInput={onInput}
-			onChange={onChange}
-			ref={inputRange}
-			list='range-datalist'/>
-		{
-			dataList ?
-				<RangeDatalist
-					data={data}
+}) => {
+	const { length } = data
+	const max = Math.ceil(length / slidesToShow)
+	return (
+		<fieldset className={className}>
+			<div className={`${className}__grid`}>
+				<legend className={`${className}__legend`}>Range Controlls</legend>
+				<label htmlFor={`${className}__input`} className={`${className}__label`}>Choose owlsly</label>
+				<input
+					className={`${className}__input`}
+					id={`${inputId}__input`}
+					name={`${name}__input`}
+					type={type}
+					min={min}
+					max={max}
 					value={value}
-					onDatalist={onDatalist}/> :
-				null
-		}
-		<div className={`${className}__actions`}>
-			<button
-				className={`${className}__action ${className}__action--prev`}
-				onClick={onPrev}>
-				Prev
-			</button>
-			<button
-				className={`${className}__action ${className}__action--next`}
-				onClick={onNext}>
-				Next
-			</button>
-		</div>
-	</fieldset>
+					step={step}
+					onInput={onInput}
+					onChange={onChange}
+					ref={inputRange}
+					list='range-datalist'/>
+				{
+					dataList ?
+						<RangeDatalist
+							slidesToShow={slidesToShow}
+							data={data}
+							value={value}
+							onDatalist={onDatalist}/> :
+						null
+				}
+				<div className={`${className}__actions`}>
+					<button
+						className={`${className}__action ${className}__action--prev`}
+						onClick={onPrev}>
+						Prev
+					</button>
+					<button
+						className={`${className}__action ${className}__action--next`}
+						onClick={onNext}>
+						Next
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	)
+}
 
 RangeConroller.propTypes = {
 	className: propTypes.string,
@@ -74,6 +82,7 @@ RangeConroller.propTypes = {
 		propTypes.string,
 		propTypes.number,
 	]),
+	slidesToShow: propTypes.number,
 	data: propTypes.array,
 	dataList: propTypes.bool,
 	onInput: propTypes.func,

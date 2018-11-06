@@ -170,20 +170,20 @@ export default class RangeSlider extends Component {
 	onDatalist(e) {
 		const { target } = e
 		const value = Number(target.value)
-		
 		this.setState({ value })
 	}
 
 	onPrev() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll, slidesPerRow } = this.state
+		const { slidesToScroll, slidesPerRow, slidesToShow } = this.state
 		const currentValue = Number(inputRange.current.value)
+		const groupsLength = Math.ceil(children.length / slidesToShow)
 		const cols = Math.ceil(
 			Math.ceil(children.length / slidesPerRow) /
 			Math.ceil(slidesToScroll / slidesPerRow)
 		)
-		const jump = 100 / (cols - 1)
+		const jump = groupsLength / (cols - 1)
 		const value = currentValue - jump >= 0 ?
 			currentValue - jump :
 			0
@@ -196,17 +196,18 @@ export default class RangeSlider extends Component {
 	onNext() {
 		const { inputRange } = this
 		const { children } = this.props
-		const { slidesToScroll, slidesPerRow } = this.state
+		const { slidesToScroll, slidesPerRow, slidesToShow } = this.state
 		const currentValue = Number(inputRange.current.value)
+		const groupsLength = Math.ceil(children.length / slidesToShow)
 		const cols = Math.ceil(
 			Math.ceil(children.length / slidesPerRow) /
 			Math.ceil(slidesToScroll / slidesPerRow)
 		)
 		// console.log('children.length: ',children.length, 'slidesPerRow: ', slidesPerRow, 'slidesToScroll: ', slidesToScroll)
-		const jump = 100 / (cols - 1)
-		const value = currentValue + jump <= 100 ?
+		const jump = groupsLength / (cols - 1)
+		const value = currentValue + jump <= groupsLength ?
 			currentValue + jump :
-			100
+			groupsLength
 
 		// console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
 
@@ -290,6 +291,7 @@ export default class RangeSlider extends Component {
 				<RangeController
 					inputRange={inputRange}
 					className={conrollerClassName}
+					slidesToShow={slidesToShow}
 					onInput={onInput}
 					onDatalist={onDatalist}
 					value={value}

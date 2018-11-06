@@ -93,12 +93,12 @@ export default class App extends Component {
 								}
 							</RangerSlider>
 					}
-					<details>
+					{/* <details>
 						<summary>Source</summary>
 						<code>
 							Source...
 						</code>
-					</details>
+					</details> */}
 					<h6>
 						<samp>
 							{ version }

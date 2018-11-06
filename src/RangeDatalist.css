@@ -1,14 +1,17 @@
 .range-datalist {
+	grid-area: datalist;
 	display: flex;
 }
 .range-datalist__option {
 	flex-grow: 1;
 	padding: 0;
-	background-color: #d3d3d3;
+	background-color: var(--lightgray);
+	min-height: auto;
+	height: 16px;
 }
 .range-datalist__option ~ .range-datalist__option {
-	border-left: 1px solid #fff;
+	border-left: 1px solid var(--white);
 }
 .range-datalist__option--active {
-	background-color: #ffb6c1;
+	background-color: var(--lightpink);
 }

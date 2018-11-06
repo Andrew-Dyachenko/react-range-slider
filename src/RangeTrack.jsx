@@ -1,19 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import splitIntoSubArray from './splitIntoSubArray'
 
-const splitIntoSubArray = (children, slidesToShow) => {
-	const arrayLength = children.length
-	let index = 0
-	let tempArray = []
-	
-	for (index = 0; index < arrayLength; index += slidesToShow) {
-		tempArray.push(children.slice(index, index + slidesToShow))
-	}
-
-	return tempArray
-}
-
-const RangeGroups = ({
+const RangeTrack = ({
 	className = 'range-slider',
 	children = [],
 	slidesToShow = 1,
@@ -28,13 +17,13 @@ const RangeGroups = ({
 		<div
 			className={`${className}__balancer`}
 			style={{
-				transform: `translateX(${value}%)`
+				transform: `translateX(${(100 / slides.length) * value}%)`
 			}}>
 			<div
 				className={`${className}__track`}
 				style={{
 					width: `calc(100% * ${slides.length})`,
-					transform: `translateX(-${value}%)`
+					transform: `translateX(-${(100 / slides.length) * value}%)`
 				}}>
 				{
 					slides.map((slidesToShow, index) =>
@@ -57,7 +46,7 @@ const RangeGroups = ({
 	)
 }
 
-RangeGroups.propTypes = {
+RangeTrack.propTypes = {
 	className: propTypes.string,
 	children: propTypes.oneOfType([
 		propTypes.arrayOf(propTypes.node),
@@ -73,4 +62,4 @@ RangeGroups.propTypes = {
 	])
 }
 
-export default RangeGroups
+export default RangeTrack

@@ -1,6 +1,10 @@
 :root {
-	--global-margin: 16px;
 	--global-padding: 16px;
+	--global-margin: 16px;
+	--white: #fff;
+	--black: #000;
+	--lightgray: #d3d3d3;
+	--lightpink: #ffb6c1;
 }
 .range-slider {
 	display: grid;
@@ -16,7 +20,7 @@
 }
 .range-slider__keyhole {
 	overflow: hidden;
-	margin: 0 -8px;
+	margin: 0 calc(var(--global-margin) / -2);
 }
 .range-slider__track {
 	display: flex;
@@ -26,9 +30,9 @@
 	display: grid;
 	align-items: center;
 	grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-	grid-gap: 16px;
+	grid-gap: var(--global-padding);
 	width: 100%;
-	padding: 0 8px;
+	padding: 0 calc(var(--global-margin) / 2);
 }
 .range-slider__item {
 	position: relative;
