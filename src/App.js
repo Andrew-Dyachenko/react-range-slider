@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
-import RangerSlider, {RangeLazyImage} from './RangeSlider'
+import RangerGallery, {RangeLazyImage} from './RangeGallery'
 import { version } from '../package.json'
 
 export default class App extends Component {
@@ -61,10 +61,10 @@ export default class App extends Component {
 			<div className='App'>
 				<div className='container App__container'>
 					<Helmet>
-						<title>React Range Slider</title>
+						<title>React Range Gallery</title>
 					</Helmet>
 					<h1>
-						React Range Slider
+						React Range Gallery
 					</h1>
 					{
 						loading ?
@@ -73,25 +73,25 @@ export default class App extends Component {
 									Loading
 								</div>
 							</div> :
-							<RangerSlider
+							<RangerGallery
 								dataList={true}>
 								{
 									images.map((obj, index) =>
 										lazyLoad ?
 											<RangeLazyImage
-												className='range-slider__img'
+												className='range-gallery__img'
 												src={obj.largeImageURL}
 												alt={obj.tags || 'cap'}
 												key={index}/> :
 
 											<img
-												className='range-slider__img'
+												className='range-gallery__img'
 												src={obj.largeImageURL}
 												alt={obj.tags || 'cap'}
 												key={index}/>
 									)
 								}
-							</RangerSlider>
+							</RangerGallery>
 					}
 					{/* <details>
 						<summary>Source</summary>

@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 import { compose } from 'redux'
 import RangeTrack from './RangeTrack'
 import RangeController from './RangeController'
-import './RangeSlider.css'
+import './RangeGallery.css'
 export {default as RangeLazyImage} from './RangeLazyImage'
 
 const getBreakpoints = ({ windowInnerWidth, responsive }) => {
@@ -57,7 +57,7 @@ const getSlidesPerRow = compose(
 	getAppropriateSlidesPerRow
 )
 
-export default class RangeSlider extends Component {
+export default class RangeGallery extends Component {
 	static propTypes = {
 		className: propTypes.string,
 		conrollerClassName: propTypes.string,
@@ -74,7 +74,7 @@ export default class RangeSlider extends Component {
 	}
 
 	static defaultProps = {
-		className: 'range-slider',
+		className: 'range-gallery',
 		conrollerClassName: 'range-conroller',
 		slidesToScroll: 1,
 		slidesToShow: 1,
@@ -138,7 +138,7 @@ export default class RangeSlider extends Component {
 		this.setDimension = this.setDimension.bind(this)
 		this.updateDimension = this.updateDimension.bind(this)
 		this.inputRange = React.createRef()
-		this.slider = React.createRef()
+		this.gallery = React.createRef()
 
 		const state = this.getDimensions()
 		this.setDimension(state)
@@ -146,8 +146,8 @@ export default class RangeSlider extends Component {
 
 	componentDidMount() {
 		window.addEventListener('resize', this.onResize)
-		const sliderWidth = this.getSliderWidth()
-		this.updateDimension({ sliderWidth })
+		const galleryWidth = this.getGalleryWidth()
+		this.updateDimension({ galleryWidth })
 	}
 
 	componentWillUnmount() {
@@ -163,8 +163,8 @@ export default class RangeSlider extends Component {
 
 	onResize() {
 		const state = this.getDimensions()
-		const sliderWidth = this.getSliderWidth()
-		this.updateDimension({ ...state, sliderWidth })
+		const galleryWidth = this.getGalleryWidth()
+		this.updateDimension({ ...state, galleryWidth })
 	}
 
 	onDatalist(e) {
@@ -214,10 +214,10 @@ export default class RangeSlider extends Component {
 		this.setState({ value })
 	}
 
-	getSliderWidth() {
-		const sliderWidth = this.slider.current.offsetWidth
-		// console.log('sliderWidth: ', sliderWidth)
-		return sliderWidth
+	getGalleryWidth() {
+		const galleryWidth = this.gallery.current.offsetWidth
+		// console.log('galleryWidth: ', galleryWidth)
+		return galleryWidth
 	}
 
 	getDimensions() {
@@ -274,7 +274,7 @@ export default class RangeSlider extends Component {
 				onDatalist,
 				inputRange } = this
 		return (
-			<div className={className} ref={this.slider}>
+			<div className={className} ref={this.gallery}>
 				<div className={`${className}__crop`}>
 					<div className={`${className}__keyhole`}>
 						<RangeTrack

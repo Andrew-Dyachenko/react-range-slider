@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 import splitIntoSubArray from './splitIntoSubArray'
 
 const RangeTrack = ({
-	className = 'range-slider',
+	className = 'range-gallery',
 	children = [],
 	slidesToShow = 1,
 	slidesPerRow = 1,
