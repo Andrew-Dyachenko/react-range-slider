@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
+import preloader from './preloader.gif'
 import RangerGallery, {RangeLazyImage} from './RangeGallery'
 import { version } from '../package.json'
 
@@ -8,18 +9,28 @@ export default class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			lazyLoad: true,
+			images: [],
 			loading: false,
-			images: []
+			lazyLoad: true,
+			dataList: true
 		}
 		this.API_KEY = '5363038-37190ac03f37e4dc006203a75'
 		this.image_type = 'photo'
 		this.q = 'owl'
 		this.safesearch = true
 		this.category = 'animals nature travel feelings'
-		this.min_width = 480
-		this.min_height = 480
+		this.min_width = 320
+		this.min_height = 320
 		this.per_page = 20 // Accepted values: 3 - 200 Default: 20
+		this.onCheckbox = this.onCheckbox.bind(this)
+	}
+	onCheckbox(e) {
+		const { target } = e
+		const { name, checked } = target
+
+		this.setState({
+			[`${name}`]: checked
+		})
 	}
 	componentDidMount() {
 		this.setState({ loading: true })
@@ -56,7 +67,8 @@ export default class App extends Component {
 			.catch(error => console.error(`Error data loading: ${error}`))
 	}
 	render() {
-		const { loading, images, lazyLoad } = this.state
+		const { onCheckbox } = this
+		const { loading, images, lazyLoad, dataList } = this.state
 		return (
 			<div className='App'>
 				<div className='container App__container'>
@@ -68,30 +80,62 @@ export default class App extends Component {
 					</h1>
 					{
 						loading ?
-							<div className="loader App__loader">
-								<div className="loader__text">
+							<div className='loader App__loader'>
+								<div className='loader__text'>
 									Loading
 								</div>
 							</div> :
-							<RangerGallery
-								dataList={true}>
-								{
-									images.map((obj, index) =>
-										lazyLoad ?
-											<RangeLazyImage
-												className='range-gallery__img'
-												src={obj.largeImageURL}
-												alt={obj.tags || 'cap'}
-												key={index}/> :
+							<Fragment>
+								<RangerGallery
+									dataList={dataList}>
+									{
+										images.map((obj, index) =>
+											lazyLoad ?
+												<RangeLazyImage
+													fakeSrc={preloader}
+													src={obj.webformatURL}
+													alt={obj.tags || 'cap'}
+													key={index}/> :
 
-											<img
-												className='range-gallery__img'
-												src={obj.largeImageURL}
-												alt={obj.tags || 'cap'}
-												key={index}/>
-									)
-								}
-							</RangerGallery>
+												<img
+													className='range-gallery__img'
+													src={obj.webformatURL}
+													alt={obj.tags || 'cap'}
+													key={index}/>
+										)
+									}
+								</RangerGallery>
+								<fieldset className='options App__options'>
+									<div className="form-group options__item">
+										<input
+											className='form-group__checkbox'
+											type='checkbox'
+											name='dataList'
+											id='datalistSwitcher'
+											onChange={onCheckbox}
+											checked={dataList}/>
+										<label
+											htmlFor='datalistSwitcher'
+											className='form-group__label'>
+											Datalist
+										</label>
+									</div>
+									<div className="form-group options__item">
+										<input
+											className='form-group__checkbox'
+											type='checkbox'
+											name='lazyLoad'
+											id='lazyLoadSwitcher'
+											onChange={onCheckbox}
+											checked={lazyLoad}/>
+										<label
+											htmlFor='lazyLoadSwitcher'
+											className='form-group__label'>
+											Image lazy load
+										</label>
+									</div>
+								</fieldset>
+							</Fragment>
 					}
 					{/* <details>
 						<summary>Source</summary>

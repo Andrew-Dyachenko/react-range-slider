@@ -1,8 +1,16 @@
 :root {
 	--global-padding: 16px;
 	--global-margin: 16px;
+	--white: #fff;
+	--black: #333;
+	--gray: #aaa;
+	--lightgray: #d3d3d3;
+	--lightpink: #ffb6c1;
 
 	font-size: 16px;
+}
+body {
+	color: var(--black)
 }
 @keyframes dots {
 
@@ -39,6 +47,19 @@
 	align-items: center;
 	min-height: 100%;
 	padding: var(--global-padding)
+}
+.options {
+	display: flex;
+	border: 1px solid var(--gray);
+	margin: 0;
+	padding: calc(var(--global-padding) - var(--global-padding) / 4) var(--global-padding);
+}
+.options__item {
+	flex-shrink: 0;
+	margin: calc(var(--global-margin) / 4) 0;
+}
+.form-group__checkbox ~ .form-group__label {
+	margin-left: calc(var(--global-margin) / 4);
 }
 .container {
 	text-align: center;
