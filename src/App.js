@@ -105,7 +105,7 @@ export default class App extends Component {
 										)
 									}
 								</RangerGallery>
-								<fieldset className='options App__options'>
+								<div className='options App__options'>
 									<div className="form-group options__item">
 										<input
 											className='form-group__checkbox'
@@ -134,7 +134,7 @@ export default class App extends Component {
 											Image lazy load
 										</label>
 									</div>
-								</fieldset>
+								</div>
 							</Fragment>
 					}
 					{/* <details>

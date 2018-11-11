@@ -50,13 +50,16 @@ body {
 }
 .options {
 	display: flex;
+	justify-content: center;
 	border: 1px solid var(--gray);
 	margin: 0;
-	padding: calc(var(--global-padding) - var(--global-padding) / 4) var(--global-padding);
+	padding: calc(var(--global-padding) - var(--global-padding) / 4);
 }
 .options__item {
+	display: flex;
+	align-items: center;
 	flex-shrink: 0;
-	margin: calc(var(--global-margin) / 4) 0;
+	margin: calc(var(--global-margin) / 4);
 }
 .form-group__checkbox ~ .form-group__label {
 	margin-left: calc(var(--global-margin) / 4);
