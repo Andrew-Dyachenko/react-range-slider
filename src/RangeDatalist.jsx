@@ -17,7 +17,8 @@ const RangeDatalist = ({
 				Array(accuracy).fill(0).map((item, index) => {
 					const isActive = index === 0 ?
 						true :
-						((index + 1) * (groupsLength / 100)).toFixed(2) <= Number(value).toFixed(2)
+						Number((index + 1) * Number((groupsLength / 100)).toFixed(2)) <= Number(Number(value).toFixed(2))
+
 					return (
 						<option
 							className={isActive ?
