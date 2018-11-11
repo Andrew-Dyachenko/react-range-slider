@@ -1,24 +1,26 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import './RangeDatalist.css'
-import splitIntoSubArray from './splitIntoSubArray'
 
 const RangeDatalist = ({
 	className = 'range-datalist',
-	data = [],
 	value = 0,
+	accuracy = 100,
+	dataLength = 0,
 	slidesToShow = 1,
 	onDatalist = f => f
 }) => {
-	const splited = splitIntoSubArray(data, slidesToShow)
+	const groupsLength = Math.ceil(dataLength / slidesToShow)
 	return	(
 		<datalist className={`${className}`} id={`${className}`}>
 			{
-				splited.map((item, index) => {
-					// const alt = !Array.isArray(item) ? item.props : ''
+				Array(accuracy).fill(0).map((item, index) => {
+					const isActive = index === 0 ?
+						true :
+						((index + 1) * (groupsLength / 100)).toFixed(2) <= value.toFixed(2)
 					return (
 						<option
-							className={index <= value ?
+							className={isActive ?
 								`${className}__option ${className}__option--active` :
 								`${className}__option`
 							}
@@ -35,14 +37,14 @@ const RangeDatalist = ({
 
 RangeDatalist.propTypes = {
 	className: propTypes.string,
-	data: propTypes.array,
+	dataLength: propTypes.number,
+	slidesToShow: propTypes.number,
 	value: propTypes.oneOfType([
 		propTypes.number,
 		propTypes.string
 	]),
-	slidesToShow: propTypes.number,
+	accuracy: propTypes.number,
 	onDatalist: propTypes.func
-
 }
 
 export default RangeDatalist

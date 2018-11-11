@@ -44,9 +44,9 @@ const RangeConroller = ({
 				{
 					dataList ?
 						<RangeDatalist
-							slidesToShow={slidesToShow}
-							data={data}
 							value={value}
+							dataLength={length}
+							slidesToShow={slidesToShow}
 							onDatalist={onDatalist}/> :
 						null
 				}

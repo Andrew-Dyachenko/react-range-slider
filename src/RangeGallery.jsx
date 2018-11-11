@@ -169,7 +169,13 @@ export default class RangeGallery extends Component {
 
 	onDatalist(e) {
 		const { target } = e
-		const value = Number(target.value)
+		const { children } = this.props
+		const { slidesToShow } = this.state
+		const groupsLength = Math.ceil(children.length / slidesToShow)
+		const value = Number(target.value) === 0 ?
+			0 :
+			groupsLength / (100 / (Number(target.value) + 1))
+		console.log('groupsLength: ', groupsLength, 'value: ', value)
 		this.setState({ value })
 	}
 
@@ -247,12 +253,12 @@ export default class RangeGallery extends Component {
 	setDimension (dimensions) {
 		// eslint-disable-next-line
 		this.state = { ...dimensions  }
-		// console.log('this.state: ', this.state)
+		console.log('this.state: ', this.state)
 	}
 
 	updateDimension(dimensions) {
 		this.setState({ ...dimensions })
-		// console.log('this.state: ', this.state)
+		console.log('this.state: ', this.state)
 	}
 
 	render() {
@@ -289,16 +295,16 @@ export default class RangeGallery extends Component {
 					</div>
 				</div>
 				<RangeController
-					inputRange={inputRange}
+					data={children}
 					className={conrollerClassName}
+					inputRange={inputRange}
 					slidesToShow={slidesToShow}
 					onInput={onInput}
-					onDatalist={onDatalist}
 					value={value}
 					onPrev={onPrev}
 					onNext={onNext}
 					dataList={dataList}
-					data={children}/>
+					onDatalist={onDatalist}/>
 			</div>
 		)
 	}
