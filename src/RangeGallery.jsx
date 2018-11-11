@@ -175,7 +175,7 @@ export default class RangeGallery extends Component {
 		const value = Number(target.value) === 0 ?
 			0 :
 			groupsLength / (100 / (Number(target.value) + 1))
-		console.log('groupsLength: ', groupsLength, 'value: ', value)
+
 		this.setState({ value })
 	}
 
@@ -194,8 +194,6 @@ export default class RangeGallery extends Component {
 			currentValue - jump :
 			0
 
-		// console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
-
 		this.setState({ value })
 	}
 
@@ -209,20 +207,16 @@ export default class RangeGallery extends Component {
 			Math.ceil(children.length / slidesPerRow) /
 			Math.ceil(slidesToScroll / slidesPerRow)
 		)
-		// console.log('children.length: ',children.length, 'slidesPerRow: ', slidesPerRow, 'slidesToScroll: ', slidesToScroll)
 		const jump = groupsLength / (cols - 1)
 		const value = currentValue + jump <= groupsLength ?
 			currentValue + jump :
 			groupsLength
-
-		// console.log('cols: ', cols, 'jump: ', jump, 'value: ', value)
 
 		this.setState({ value })
 	}
 
 	getGalleryWidth() {
 		const galleryWidth = this.gallery.current.offsetWidth
-		// console.log('galleryWidth: ', galleryWidth)
 		return galleryWidth
 	}
 
@@ -253,12 +247,10 @@ export default class RangeGallery extends Component {
 	setDimension (dimensions) {
 		// eslint-disable-next-line
 		this.state = { ...dimensions  }
-		console.log('this.state: ', this.state)
 	}
 
 	updateDimension(dimensions) {
 		this.setState({ ...dimensions })
-		console.log('this.state: ', this.state)
 	}
 
 	render() {
