@@ -15,9 +15,10 @@ const RangeDatalist = ({
 		<datalist className={`${className}`} id={`${className}`}>
 			{
 				Array(accuracy).fill(0).map((item, index) => {
+					console.log(Number(((index + 1) * Number((groupsLength / 100))).toFixed(2)), Number(Number(value).toFixed(2)))
 					const isActive = index === 0 ?
 						true :
-						Number((index + 1) * Number((groupsLength / 100)).toFixed(2)) <= Number(Number(value).toFixed(2))
+						Number(((index + 1) * Number((groupsLength / 100))).toFixed(2)) <= Number(Number(value).toFixed(2))
 
 					return (
 						<option
