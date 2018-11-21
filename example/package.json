@@ -1,0 +1,22 @@
+{
+  "name": "react-range-gallery-example",
+  "homepage": "https://Andrew-Dyachenko.github.io/react-range-gallery",
+  "version": "v1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "react-range-gallery": "link:..",
+    "react-scripts": "^1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -22,7 +22,6 @@
 		-->
 		<title>Loading...</title>
 	</head>
-
 	<body>
 		<noscript>
 			You need to enable JavaScript to run this app.
@@ -30,7 +29,6 @@
 		<div id="root" class="root">
 			<style type="text/css" scoped>
 				@keyframes dots {
-
 					0%,
 					20% {
 						color: rgba(255, 255, 255, 0);
@@ -38,20 +36,17 @@
 							.25em 0 0 rgba(255, 255, 255, 0),
 							.5em 0 0 rgba(255, 255, 255, 0);
 					}
-
 					40% {
 						color: #000;
 						text-shadow:
 							.25em 0 0 rgba(255, 255, 255, 0),
 							.5em 0 0 rgba(255, 255, 255, 0);
 					}
-
 					60% {
 						text-shadow:
 							.25em 0 0 #000,
 							.5em 0 0 rgba(255, 255, 255, 0);
 					}
-
 					80%,
 					100% {
 						text-shadow:
@@ -59,13 +54,11 @@
 							.5em 0 0 #000;
 					}
 				}
-
 				html {
 					font-size: 16px;
 					height: 100%;
 					line-height: 1.15;
 				}
-
 				body {
 					font-family: monospace;
 					height: 100%;
@@ -73,15 +66,12 @@
 					padding: 0;
 					color: #333;
 				}
-
 				* {
 					box-sizing: border-box
 				}
-
 				.root {
 					height: 100%;
 				}
-
 				.loader {
 					align-items: center;
 					display: flex;
@@ -90,12 +80,10 @@
 					justify-content: center;
 					padding: 16px;
 				}
-
 				.loader__text {
 					margin: 0 auto;
 					position: relative;
 				}
-
 				.loader__text::after {
 					animation: dots 1s steps(5, end) infinite;
 					content: ' .';
@@ -121,5 +109,4 @@
 			To create a production bundle, use `npm run build` or `yarn build`.
 		-->
 	</body>
-
 </html>

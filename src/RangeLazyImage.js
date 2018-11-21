@@ -51,25 +51,3 @@ export default class RangeLazyImage extends Component {
 		/>
 	}
 }
-
-// const RangeLazyImage = props => {
-// 	const { className, src, alt } = props
-// 	const fakeSrc = props.fakeSrc || fakeImage
-// 	return <LazyImage
-// 		className={className}
-// 		src={src}
-// 		alt={alt}
-// 		debounceDurationMs={100}
-// 		placeholder={({ ref }) => (
-// 			<img
-// 				className={className}
-// 				ref={ref}
-// 				src={fakeSrc}
-// 				alt={alt}
-// 			/>
-// 		)}
-// 		actual={({ imageProps }) => (
-// 			<img alt={alt} {...imageProps} />
-// 		)}
-// 	/>
-// }

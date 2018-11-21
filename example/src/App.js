@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react'
 import './App.css'
 import { Helmet } from 'react-helmet'
 import preloader from './preloader.gif'
-import RangerGallery, {RangeLazyImage} from './RangeGallery'
-import { version } from '../package.json'
+import RangeGallery, { RangeLazyImage } from 'react-range-gallery'
+import { version as RRGAv } from '../package.json'
+import { version as RRGv } from './RRG.json'
+import ghIcon from './github-brands.svg'
 
 export default class App extends Component {
 	constructor(props) {
@@ -86,7 +88,7 @@ export default class App extends Component {
 								</div>
 							</div> :
 							<Fragment>
-								<RangerGallery
+								<RangeGallery
 									dataList={dataList}>
 									{
 										images.map((obj, index) =>
@@ -104,7 +106,7 @@ export default class App extends Component {
 													key={index}/>
 										)
 									}
-								</RangerGallery>
+								</RangeGallery>
 								<div className='options App__options'>
 									<div className="form-group options__item">
 										<input
@@ -143,11 +145,22 @@ export default class App extends Component {
 							Source...
 						</code>
 					</details> */}
-					<h6>
-						<samp>
-							{ version }
-						</samp>
-					</h6>
+					<ul className="abbrs App__abbrs">
+						<li className="abbrs__item">
+							<abbr title="RRGA - React Range Gallery application">RRGA</abbr>&nbsp;-&nbsp;<samp>{ RRGAv }</samp>
+						</li>
+						<li className="abbrs__item">
+							<abbr title="RRGA - React Range Gallery">RRG</abbr>&nbsp;-&nbsp;<samp>{ RRGv }</samp>
+						</li>
+					</ul>
+					<address className="address App__address">
+						<a href="https://github.com/Andrew-Dyachenko/react-range-gallery" rel="noopener noreferrer" target="_blank" className="address__item address__item--github">
+							<img src={ghIcon} width="16" height="16" alt="Github icon" className="address__icon" />
+							<span className="address__icon">
+								Github
+							</span>
+						</a>
+					</address>
 				</div>
 			</div>
 		)
