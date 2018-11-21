@@ -26,7 +26,6 @@ yarn add react-range-gallery
 
 ```jsx
 import React, { Component } from 'react'
-
 import RangeGallery from 'react-range-gallery'
 
 class Example extends Component {
