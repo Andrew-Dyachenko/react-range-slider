@@ -16,17 +16,27 @@ The project is at the stage of early development. Use with caution!
 npm install --save react-range-gallery
 ```
 
+or
+
+```bash
+yarn add react-range-gallery
+```
+
 ## Usage
 
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-range-gallery'
+import RangeGallery from 'react-range-gallery'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <RangeGallery>
+        <img src="https://picsum.photos/480/480" alt="Cap 1" />
+        <img src="https://picsum.photos/480/480" alt="Cap 2" />
+        <img src="https://picsum.photos/480/480" alt="Cap 3" />
+      </RangeGallery>
     )
   }
 }
