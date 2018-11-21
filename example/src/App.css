@@ -102,3 +102,33 @@ body {
 	display: grid;
 	grid-row-gap: var(--global-padding)
 }
+.App__abbrs {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+.abbrs {
+	font-size: 0.75rem;
+	margin: 0 calc(var(--global-margin) / -4);
+}
+.abbrs__item {
+	padding: calc(var(--global-margin) / 8) calc(var(--global-margin) / 4)
+}
+.address:not(:empty) {
+	display: flex;
+	justify-content: center;
+	margin: calc(var(--global-padding) / -8) calc(var(--global-margin) / -4)
+}
+.address__item:not(:empty) {
+	padding: calc(var(--global-padding) / 8) calc(var(--global-padding) / 4);
+}
+.address__item {
+	display: flex;
+	align-items: center;
+}
+.address__icon {
+	margin-right: calc(var(--global-margin) / 4);
+}
