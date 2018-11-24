@@ -30,24 +30,24 @@ import React, {Component} from 'react'
 import RangeGallery from 'react-range-gallery'
 
 export default class App extends Component {
-	render() {
-		return (
-			<RangeGallery>
-			{
-				Array(20)
-				.fill(0)
-				.map((element, index) => {
-					return (
-					<img
-						src="https://loremflickr.com/g/480/480/owl/all"
-						key={index}
-						alt={`Example ${index}`}/>
-					)
-				})
-			}
-			</RangeGallery>
-		)
-	}
+    render() {
+        return (
+            <RangeGallery>
+            {
+                Array(20)
+                .fill(0)
+                .map((element, index) => {
+                    return (
+                    <img
+                        src="https://loremflickr.com/g/480/480/owl/all"
+                        key={index}
+                        alt={`Example ${index}`}/>
+                    )
+                })
+            }
+            </RangeGallery>
+        )
+    }
 }
 ```
 
