@@ -69,7 +69,7 @@ serviceWorker.unregister();
 
 ## Boilerplated
 Build with next boilerplates:
-- [create-react-app](https://facebook.github.io/create-react-app/)
+- [create-react-app](https://github.com/facebook/create-react-app)
 - [create-react-library](https://github.com/transitive-bullshit/create-react-library)
 
 ## License
