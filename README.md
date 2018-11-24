@@ -26,7 +26,7 @@ yarn add react-range-gallery
 Usage example implies to use [create-react-app](https://facebook.github.io/create-react-app/) boilerplate
 > App.js
 ```jsx
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import RangeGallery from 'react-range-gallery'
 
 export default class App extends Component {
@@ -35,15 +35,45 @@ export default class App extends Component {
             <RangeGallery>
                 {
                     Array(20)
-                    .fill(0)
-                    .map((element, index) => {
-                        return (
-                        <img
-                            src="https://loremflickr.com/g/480/480/owl/all"
-                            key={index}
-                            alt={`Example ${index}`}/>
-                        )
-                    })
+                        .fill(0)
+                        .map((element, index) => {
+                            return (
+                                <img
+                                    src="https://loremflickr.com/g/480/480/owl/all"
+                                    alt={`Example ${index}`}
+                                    key={index}/>
+                            )
+                        })
+                }
+            </RangeGallery>
+        )
+    }
+}
+```
+
+#### Lazy images load
+> App.js
+```jsx
+import React, { Component } from 'react'
+import RangeGallery, { RangeLazyImage } from 'react-range-gallery'
+import preloader from './preloader.gif'
+
+export default class App extends Component {
+    render() {
+        return (
+            <RangeGallery>
+                {
+                    Array(20)
+                        .fill(0)
+                        .map((element, index) => {
+                            return (
+                                <RangeLazyImage
+                                    src="https://loremflickr.com/g/480/480/owl/all"
+                                    alt={`Example ${index}`}
+                                    key={index}
+                                    fakeSrc={preloader}/>
+                            )
+                        })
                 }
             </RangeGallery>
         )
