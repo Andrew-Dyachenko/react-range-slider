@@ -23,22 +23,48 @@ yarn add react-range-gallery
 ```
 
 ## Usage
-
+Usage example implies to use [create-react-app](https://facebook.github.io/create-react-app/) boilerplate
+> App.js
 ```jsx
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import RangeGallery from 'react-range-gallery'
 
-class Example extends Component {
-  render () {
-    return (
-      <RangeGallery>
-        <img src="https://picsum.photos/480/480" alt="Cap 1" />
-        <img src="https://picsum.photos/480/480" alt="Cap 2" />
-        <img src="https://picsum.photos/480/480" alt="Cap 3" />
-      </RangeGallery>
-    )
-  }
+export default class App extends Component {
+	render() {
+		return (
+			<RangeGallery>
+			{
+				Array(20)
+				.fill(0)
+				.map((element, index) => {
+					return (
+					<img
+						src="https://loremflickr.com/g/480/480/owl/all"
+						key={index}
+						alt={`Example ${index}`}/>
+					)
+				})
+			}
+			</RangeGallery>
+		)
+	}
 }
+```
+
+>index.js
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
 ```
 
 ## License
