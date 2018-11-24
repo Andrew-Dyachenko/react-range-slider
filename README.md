@@ -67,6 +67,11 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
+## Boilerplated
+Build with next boilerplates:
+- [create-react-app](https://facebook.github.io/create-react-app/)
+- [create-react-library](https://github.com/transitive-bullshit/create-react-library)
+
 ## License
 
 MIT © [Andrew-Dyachenko](https://github.com/Andrew-Dyachenko)
