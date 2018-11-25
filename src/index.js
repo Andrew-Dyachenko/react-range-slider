@@ -59,8 +59,8 @@ const getSlidesPerRow = compose(
 
 export default class RangeGallery extends Component {
 	static propTypes = {
-		className: propTypes.string,
-		conrollerClassName: propTypes.string,
+		className: propTypes.string.isRequired,
+		conrollerClassName: propTypes.string.isRequired,
 		slidesToShow: propTypes.number,
 		slidesToScroll: propTypes.number,
 		slidesPerRow:  propTypes.number,
@@ -76,8 +76,8 @@ export default class RangeGallery extends Component {
 	static defaultProps = {
 		className: 'range-gallery',
 		conrollerClassName: 'range-conroller',
-		slidesToScroll: 1,
 		slidesToShow: 1,
+		slidesToScroll: 1,
 		breakpoint: 0,
 		slidesPerRow: 1,
 		dataList: false,
