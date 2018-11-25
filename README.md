@@ -7,8 +7,8 @@
 ## Demo
 [http://react-range-gallery.tech/](http://react-range-gallery.tech/)
 
-## Attention
-The project is at the stage of early development. Use with caution!
+## ATTENTION!
+The project is at the stage of **early development**. Documentation not finished now. Please use it if *really* need it. Be caution!
 
 ## Install
 
