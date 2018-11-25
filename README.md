@@ -98,7 +98,8 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
-##API Reference
+## API Reference
+
 | Name                   | Type   | Default         | Required | Description                                                                                                                                                               |
 |------------------------|--------|-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **className**          | String | range-gallery   | true     | Main gallery class. Sub dependent components will inherit this class in [BEM](https://en.bem.info/) style format.<br/> Example: *className="block__element--modificator"* |
