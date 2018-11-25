@@ -56,7 +56,7 @@ export default class App extends Component {
 ```jsx
 import React, { Component } from 'react'
 import RangeGallery, { RangeLazyImage } from 'react-range-gallery'
-import preloader from './preloader.gif'
+const preloader = 'http://react-range-gallery.tech/preloader.gif'
 
 export default class App extends Component {
     render() {
@@ -80,6 +80,7 @@ export default class App extends Component {
     }
 }
 ```
+> The `RangeLazyImage` is based on **react-lazy-images**, which you can optionally read about [here](https://github.com/fpapado/react-lazy-images).
 
 >index.js
 ```js
@@ -97,10 +98,18 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
-## Boilerplated
-Build with next boilerplates:
+##API Reference
+| Name                   | Type   | Default         | Required | Description                                                                                                                                                               |
+|------------------------|--------|-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **className**          | String | range-gallery   | true     | Main gallery class. Sub dependent components will inherit this class in [BEM](https://en.bem.info/) style format.<br/> Example: *className="block__element--modificator"* |
+| **conrollerClassName** | String | range-conroller | true     | Main controller class                                                                                                                                                     |
+| **slidesToShow**       | Number | 1               | false    | Slides quantity in group.<br/> All slides separating to groups visible at the moment                                                                                      |
+
+## Libraries
+This package is mainly bootstrapping and builded with next libraries
 - [create-react-app](https://github.com/facebook/create-react-app)
 - [create-react-library](https://github.com/transitive-bullshit/create-react-library)
+- [react-lazy-images](https://github.com/fpapado/react-lazy-images)
 
 ## License
 
