@@ -98,7 +98,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 ```
 
-## API Reference
+## API Reference (IN PROGRESS...!)
 
 | Name                   | Type   | Default         | Required | Description                                                                                                                                                               |
 |------------------------|--------|-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
