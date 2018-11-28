@@ -61,10 +61,10 @@ export default class RangeGallery extends Component {
 	static propTypes = {
 		className: propTypes.string.isRequired,
 		conrollerClassName: propTypes.string.isRequired,
-		slidesToShow: propTypes.number,
-		slidesToScroll: propTypes.number,
-		slidesPerRow:  propTypes.number,
-		breakpoint: propTypes.number,
+		slidesToShow: propTypes.number.isRequired,
+		slidesToScroll: propTypes.number.isRequired,
+		slidesPerRow:  propTypes.number.isRequired,
+		breakpoint: propTypes.number.isRequired,
 		responsive: propTypes.arrayOf(propTypes.object),
 		children: propTypes.oneOfType([
 			propTypes.arrayOf(propTypes.node),
@@ -78,9 +78,8 @@ export default class RangeGallery extends Component {
 		conrollerClassName: 'range-conroller',
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		breakpoint: 0,
 		slidesPerRow: 1,
-		dataList: false,
+		breakpoint: 0,
 		responsive: [
 			{
 				breakpoint: 0,
@@ -124,7 +123,8 @@ export default class RangeGallery extends Component {
 				slidesToScroll: 8,
 				slidesPerRow: 2
 			}
-		]
+		],
+		dataList: false
 	}
 
 	constructor(props) {
