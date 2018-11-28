@@ -7,8 +7,8 @@
 ## Demo
 [http://react-range-gallery.tech/](http://react-range-gallery.tech/)
 
-## ATTENTION!
-The project is at the stage of **early development**. Documentation not finished now. Please use it if *really* need it. Be caution!
+## Attention!
+The project is at the stage of **early development**. Documentation not finished yet. Please use it if you really need. Be caution!
 
 ## Install
 
@@ -100,11 +100,12 @@ serviceWorker.unregister();
 
 ## API Reference (IN PROGRESS...!)
 
-| Name                   | Type   | Default         | Required | Description                                                                                                                                                               |
-|------------------------|--------|-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **className**          | String | range-gallery   | true     | Main gallery class. Sub dependent components will inherit this class in [BEM](https://en.bem.info/) style format.<br/> Example: *className="block__element--modificator"* |
-| **conrollerClassName** | String | range-conroller | true     | Main controller class                                                                                                                                                     |
-| **slidesToShow**       | Number | 1               | false    | Slides quantity in group.<br/> All slides separating to groups visible at the moment                                                                                      |
+| Name                   | Type   | Default         | Required (As option...) | Description                                                                                                                                                                  |
+|------------------------|--------|-----------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **className**          | String | range-gallery   | false                   | Main gallery class.<br> Sub dependent components will inherit this class in [BEM](https://en.bem.info/) style format.<br> Example: *className="block__element--modificator"* |
+| **conrollerClassName** | String | range-conroller | false                   | Main controller class                                                                                                                                                        |
+| **slidesToShow**       | Number | 1               | false                   | Slides quantity to show.<br> All slides separating to groups visible at the moment                                                                                           |
+| **slidesToScroll**     | Number | 1               | false                   | Slides quantity to slide.<br> All slides separating to groups visible at the moment                                                                                          |
 
 ## Libraries
 This package is mainly bootstrapping and builded with next libraries
