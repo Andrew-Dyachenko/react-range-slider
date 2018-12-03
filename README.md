@@ -26,8 +26,11 @@ yarn add react-range-gallery
 ```
 
 ## Usage
+
 Usage example implies to use [create-react-app](https://facebook.github.io/create-react-app/) boilerplate
+
 > App.js
+
 ```jsx
 import React, { Component } from 'react'
 import RangeGallery from 'react-range-gallery'
@@ -55,7 +58,9 @@ export default class App extends Component {
 ```
 
 #### Lazy images load
+
 > App.js
+
 ```jsx
 import React, { Component } from 'react'
 import RangeGallery, { RangeLazyImage } from 'react-range-gallery'
