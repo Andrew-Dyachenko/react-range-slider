@@ -91,6 +91,7 @@ export default class App extends Component {
 > The `RangeLazyImage` is based on **react-lazy-images**, which you can optionally read about [here](https://github.com/fpapado/react-lazy-images).
 
 >index.js
+
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
