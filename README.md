@@ -8,7 +8,7 @@
 [http://react-range-gallery.tech/](http://react-range-gallery.tech/)
 
 ## Attention!
-The project is at the stage of **early development**. Documentation is't stable yet. Please use it if you really need!
+The project is at the stage of **early development**. Project is't stable yet. Please use it if you really need!
 
 ## Touch
 NO touch events yet supported! Will coming with *-beta*...
