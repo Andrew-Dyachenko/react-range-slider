@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import './RangeGallery.css'
 import RangeTrack from './RangeTrack'
 import RangeController from './RangeController'
-// import { version } from '../package.json'
+export { version as RRGv } from '../package.json'
 export { default as RangeLazyImage } from './RangeLazyImage'
 
 const getBreakpoints = ({ windowInnerWidth, responsive }) => {

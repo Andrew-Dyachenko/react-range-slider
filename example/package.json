@@ -1,7 +1,7 @@
 {
   "name": "react-range-gallery-example",
   "homepage": "https://Andrew-Dyachenko.github.io/react-range-gallery",
-  "version": "v1.0.0",
+  "version": "v1.0.1",
   "license": "MIT",
   "private": true,
   "dependencies": {
