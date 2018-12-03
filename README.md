@@ -92,7 +92,7 @@ export default class App extends Component {
 
 >index.js
 
-```js
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
