@@ -4,7 +4,8 @@ import { compose } from 'redux'
 import './RangeGallery.css'
 import RangeTrack from './RangeTrack'
 import RangeController from './RangeController'
-export { default as RangeLazyImage } from './RangeLazyImage';
+// import { version } from '../package.json'
+export { default as RangeLazyImage } from './RangeLazyImage'
 
 const getBreakpoints = ({ windowInnerWidth, responsive }) => {
 	const breakpoints = responsive.reduce((points, obj) => 
@@ -59,6 +60,10 @@ const getSlidesPerRow = compose(
 
 export default class RangeGallery extends Component {
 	static propTypes = {
+		children: propTypes.oneOfType([
+			propTypes.arrayOf(propTypes.node),
+			propTypes.node
+		]),
 		className: propTypes.string.isRequired,
 		conrollerClassName: propTypes.string.isRequired,
 		slidesToShow: propTypes.number.isRequired,
@@ -66,10 +71,6 @@ export default class RangeGallery extends Component {
 		slidesPerRow:  propTypes.number.isRequired,
 		breakpoint: propTypes.number.isRequired,
 		responsive: propTypes.arrayOf(propTypes.object),
-		children: propTypes.oneOfType([
-			propTypes.arrayOf(propTypes.node),
-			propTypes.node
-		]),
 		dataList: propTypes.bool
 	}
 

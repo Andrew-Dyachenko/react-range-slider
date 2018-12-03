@@ -7,6 +7,9 @@
 ## Demo
 [http://react-range-gallery.tech/](http://react-range-gallery.tech/)
 
+## Touch events
+No touch events yet supported!
+
 ## Attention!
 The project is at the stage of **early development**. Documentation not finished yet. Please use it if you really need. Be caution!
 
