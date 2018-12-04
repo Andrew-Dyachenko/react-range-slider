@@ -149,7 +149,7 @@ export default class App extends Component {
 							<abbr title="RRGA - React Range Gallery application">RRGA</abbr>&nbsp;-&nbsp;<samp>{ RRGAv }</samp>
 						</li>
 						<li className="abbrs__item">
-							<abbr title="RRGA - React Range Gallery">RRG</abbr>&nbsp;-&nbsp;<samp>{ RRGv }</samp>
+							<abbr title="RRG - React Range Gallery">RRG</abbr>&nbsp;-&nbsp;<samp>{ RRGv }</samp>
 						</li>
 					</ul>
 					<address className="address App__address">
